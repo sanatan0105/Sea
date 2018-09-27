@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/custom.css"  media="screen,projection"/>
+
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+
+    /* label color */
+    .input-field label {
+        color: #1a237e;
+    }
+    /* label focus color */
+    .input-field input[type=text]:focus + label {
+        color: #1a237e;
+    }
+    /* label underline focus color */
+    .input-field input[type=text]:focus {
+        border-bottom: 1px solid #1a237e ;
+        box-shadow: 0 1px 0 0 #1a237e ;
+    }
+    /* valid color */
+    .input-field input[type=text].valid {
+        border-bottom: 1px solid #1a237e ;
+        box-shadow: 0 1px 0 0 #1a237e ;
+    }
+    /* invalid color */
+    .input-field input[type=text].invalid {
+        border-bottom: 1px solid #1a237e ;
+        box-shadow: 0 1px 0 0 #1a237e ;
+    }
+    /* icon prefix focus color */
+    .input-field .prefix.active {
+        color: #1a237e ;
+    }
+
+    input[type=text] {
+
+        color: #000 ;
+    }
+
+
+    /* label focus color */
+    .input-field input:focus + label {
+        color: #1a237e  !important;
+    }
+    /* label underline focus color */
+    .row .input-field input:focus {
+        border-bottom: 1px solid #1a237e  !important;
+        box-shadow: 0 1px 0 0 #1a237e  !important
+    }
+
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+
+        background: #1a237e;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to bottom, #1a237e, #303f9f );  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to bottom, #1a237e, #303f9f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    }
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-top: 25%;
+        margin-right: auto;
+        width: 120%;
+        /*border: 1px solid #1a237e ;*/
+        padding: 3px;
+        border-radius: 30px;
+    }
+    .btn-small {
+        height: 28px;
+        line-height: 28px;
+        padding: 0 0.7rem;
+        margin-top: 10px;
+    }
+    </style>
+  </head>
+
+  <body style="background: #fff; margin:0;">
+
+  <div class="navbar-fixed">
+      <nav>
+          <div class="nav-wrapper indigo darken-4">
+              <a href="#!" class="brand-logo left"><i class="material-icons">cloud</i></a>
+              <ul class="right">
+                  <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+                  <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+                  <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+              </ul>
+          </div>
+      </nav>
+  </div>
+
+  <div class="container" >
+      <div class="row" >
+          <div class="col s3">
+              <img src="img/happy.png" alt="" class="circle responsive-img center" style="">
+          </div>
+          <div class="col s9">
+              <div class="row" style="margin-top: 4%;">
+                  <center>
+                      <div class="col s4">
+                          <strong><span style="font-size: 16px; text-align: center">200</span></strong><br/>
+                          <span class="grey-text darken-3 ">Posts</span>
+                      </div>
+                      <div class="col s4">
+                          <strong><span style="font-size: 16px; text-align: center">200</span></strong>
+                          <span class="grey-text darken-3 ">Followers</span>
+                      </div>
+                      <div class="col s4">
+                          <strong><span style="font-size: 16px; text-align: center ">200</span></strong>
+                          <span class="grey-text darken-3">Following</span>
+                      </div>
+
+                  <button class="btn waves-effect waves-light indigo darken-4 btn-small" type="submit" name="action"><small>Edit profile
+                      <i class="material-icons right">send</i></small>
+                  </button>
+                  </center>
+              </div>
+          </div>
+          <center><div style="font-weight: 600;">Sanatan Bhardwaj</div></center>
+      </div>
+        <hr  style="border-bottom: 0.5px solid #eceff1;" />
+  </div>
+  <div class="container-fluid">
+
+      <div class="row">
+          <div class="col s2">
+              <center><img src="img/logo.png" height="30" width="30" class="blog-list-profile circle responsive-img"></center>
+          </div>
+          <div class="col s10">
+              <p><span class="blog-list-name">Shayari Sea</span><span class="grey-text darken-3 blog-list-time"> - 4 days ago</span></p>
+              <p class="blog-content">Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage.</p>
+              <div class="row">
+                  <div class="col s4">
+                      <div class="row">
+                          <div class="col s3">
+                                <span class="view-icon">
+                                    <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">visibility</i>
+                                </span>
+                          </div>
+                          <div class="col s9">
+                              <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
+                          </div>
+                      </div>
+
+
+                  </div>
+                  <div class="col s4">
+                      <div class="row">
+                          <div class="col s3">
+                                <span class="view-icon">
+                                    <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">thumb_up</i>
+                                </span>
+                          </div>
+                          <div class="col s9">
+                              <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col s2">
+                      <span class="share-button"><i class="material-icons" style="font-size: 18px; color: #53595e; margin-top: 3px;">share</i></span>
+                  </div>
+                  <div class="col s2">
+                      <span class="share-button"><img src="img/whatsapp.png"  width="19" height="19" /> </span>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+      <hr style="margin-top:-50px;">
+      <div class="row">
+          <div class="col s2">
+              <center><img src="img/logo.png" height="30" width="30" class="blog-list-profile circle responsive-img"></center>
+          </div>
+          <div class="col s10">
+              <p><span class="blog-list-name">Shayari Sea</span><span class="grey-text darken-3 blog-list-time"> - 4 days ago</span></p>
+              <p class="blog-content">Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage.</p>
+              <div class="row">
+                  <div class="col s4">
+                      <div class="row">
+                          <div class="col s3">
+                                <span class="view-icon">
+                                    <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">visibility</i>
+                                </span>
+                          </div>
+                          <div class="col s9">
+                              <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
+                          </div>
+                      </div>
+
+
+                  </div>
+                  <div class="col s4">
+                      <div class="row">
+                          <div class="col s3">
+                                <span class="view-icon">
+                                    <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">thumb_up</i>
+                                </span>
+                          </div>
+                          <div class="col s9">
+                              <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col s4">
+                      <span class="share-button"><i class="material-icons" style="font-size: 18px; color: #53595e; margin-top: 3px;">share</i></span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <hr style="margin-top:-50px;">
+
+
+  </div>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+  </body>
+</html>
