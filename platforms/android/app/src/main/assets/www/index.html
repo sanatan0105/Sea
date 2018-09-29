@@ -13,6 +13,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
 
+        body {
+
+            background: linear-gradient(to bottom, #363795, #005C97) fixed; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
         /* label color */
         .input-field label {
             color: #fff;
@@ -70,13 +74,29 @@
                padding-top: 28px;
                margin-top: -28px;
            }
+        button {
+
+        }
+        .login_button{
+            width: 70%;
+            height: 28%;
+            margin-top:2em;
+            background: #005C97;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #363795, #004197);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #363795, #004197);color: white;
+            font-weight: bold;
+            filter: brightness(90%);
+            transition: 150ms filter ease;
+            border-radius: 30px;
+            box-shadow: 0 -24px 48px 0 rgba(0, 203, 215, 0.08), 0 16px 24px 0 rgba(19, 16, 34, 0.18);
+        }
     </style>
 </head>
 <body>
 
 <div class="container  center-align">
-    <center><img id="login-logo" class="center-align" src="img/logo.png" width="100"></center>
-    <!--<div style="font-size: 26px; margin-top: 2em;" class="center-align white-text" >Welcome to Shayari Sea</div>-->
+    <p style="font-size: 4.7em;" class="white-text">SS</p>
+    <div style="font-size: 20px; margin-top: -2em;" class="center-align white-text" >Welcome to Shayari Sea</div>
     <div class="row">
         <div class="input-field col s12">
             <input style="padding-left: 10px;" id="phone" type="number" class="validate white-text">
@@ -86,20 +106,17 @@
             <input style="padding-left: 10px;" id="password" type="password" class="validate white-text">
             <label for="password">Password</label>
         </div>
-        <p class="white-text center-align">Forget your password? <strong>Get help signing in</strong></p>
+        <p class="white-text center-align">Forget your password? <span style="font-size: 15px; font-weight: bold;">Reset Password</span></p>
         <a href="feed.html">
-            <button class="btn waves-effect waves-light z-depth-0 " style="width: 100%; margin-top: 2em;background: #005C97;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #363795, #005C97);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #363795, #005C97);" type="submit" name="login">Login
+            <button class="btn waves-effect waves-light z-depth-4 login_button"
+                     type="submit" name="login"><span style="margin-top:120px;" >login</span>
             </button>
         </a>
 
         <div class="white-text center-align" style="margin-top: 2em;">OR</div>
-        <p class="white-text center-align"><strong>Don't have an account? Sign Up.</strong></p>
+        <p class="white-text center-align" ><span style="font-size: 20px;">Don't have an account? Sign Up.</span></p>
     </div>
 </div>
-
-
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -111,7 +128,7 @@
         function setTextZoomCallback(textZoom) {
             console.log('WebView text should be scaled ' + textZoom + '%');
         }
-        MobileAccessibility.setTextZoom(125, setTextZoomCallback);
+        MobileAccessibility.setTextZoom(100, setTextZoomCallback);
     },false);
 </script>
 
