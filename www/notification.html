@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/custom.css"  media="screen,projection"/>
+
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        .dropdown-content {
+            top: 100% !important;
+            color:black;
+        }
+
+    </style>
+</head>
+
+<body style="background: #fff; margin:0;">
+
+<div id="include"></div>
+
+<div id="main">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s2">
+                    <center><img src="img/defaultava/1.png" height="41" width="41" class="blog-list-profile circle responsive-img"></center>
+                </div>
+                <div class="col s10">
+                    <p style="margin-left: 5px; font-size: 12px; font-weight: 300;"><span class="blog-list-name">Shayari Sea liked your shyari</span></p>
+                    <p style="margin-left: -13px; margin-top: -10px;" class="blog-content">Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. </p>
+                    <span style="font-size: 10px; font-weight: 200; color: #455a64 ;">- 4 days ago</span>
+                </div>
+
+            </div>
+            <hr style="margin-top:4px;">
+
+
+        </div>
+
+    </div>
+</div>
+</br>
+</br>
+</br>
+</br>
+
+</body>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript">
+    document.addEventListener("deviceready", function(){
+        // var deviceinfo = "cordova:"+device.cordova+"<br>Model:"+device.model+"<br>UUID:"+device.uuid+"<br>Platform:"+device.platform+"("+device.version+")";
+        // document.getElementById("deviceInfoText").innerHTML = deviceinfo;
+        function setTextZoomCallback(textZoom) {
+            console.log('WebView text should be scaled ' + textZoom + '%');
+        }
+        MobileAccessibility.setTextZoom(110, setTextZoomCallback);
+    },false);
+
+
+
+
+</script>
+<script src="js/pulltorefresh.js" type="text/javascript"></script>
+<script>
+    PullToRefresh.init({
+        mainElement: '#main',
+        onRefresh: function(){
+            // What do you want to do when the user does the pull-to-refresh gesture
+            window.location.reload();
+        }
+    });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script>
+    $(document).ready(function() {
+
+        $("#include").load('include/header.html', function () {
+            $('.sidenav').sidenav();
+            $('.dropdown-trigger').dropdown({constrainWidth: false });
+        });
+    });
+</script>
+
+<script type="text/javascript" src="js/custom.js"></script>
+</html>

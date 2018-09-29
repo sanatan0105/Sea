@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <!--Import Google Icon Font-->
+    <meta charset="UTF-8">
+    <title>Device Info</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
@@ -12,8 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
 
-        body{
-            font-size: 180%;
+        html {
+            height: 100%;
+            background: linear-gradient(to bottom, #363795, #005C97) fixed; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         }
         /* label color */
         .input-field label {
@@ -72,44 +74,69 @@
                padding-top: 28px;
                margin-top: -28px;
            }
+        button {
+
+        }
+        .login_button{
+            width: 70%;
+            height: 28%;
+            margin-top:2em;
+            background: #005C97;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #363795, #004197);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #363795, #004197);color: white;
+            font-weight: bold;
+            filter: brightness(90%);
+            transition: 150ms filter ease;
+            border-radius: 30px;
+            box-shadow: 0 -24px 48px 0 rgba(0, 203, 215, 0.08), 0 16px 24px 0 rgba(19, 16, 34, 0.18);
+        }
     </style>
 </head>
-
 <body>
 
-<div class="container">
-    <center><img id="login-logo" class="center-align" src="img/logo.png" width="100" style="margin-top: 12%;"></center>
-    <div style="font-size: 26px; margin-top: 1em;" class="center-align white-text" >Welcome to Shayari Sea</div>
+<div class="container  center-align">
+    <p style="font-size: 4.7em;" class="white-text">SS</p>
+    <div style="font-size: 20px; margin-top: -2em;" class="center-align white-text" >Welcome to Shayari Sea</div>
+    <p class="white-text">Create an account to continue</p>
     <div class="row">
         <div class="input-field col s12">
-            <input id="name" type="number" class="validate white-text">
+            <input style="padding-left: 10px;" id="name" type="number" class="validate white-text">
             <label for="name">Name</label>
         </div>
         <div class="input-field col s12">
-            <input id="phone" type="number" class="validate white-text">
+            <input style="padding-left: 10px;" id="phone" type="number" class="validate white-text">
             <label for="phone">Phone Number</label>
         </div>
         <div class="input-field col s12">
-            <input id="password" type="password" class="validate white-text">
+            <input style="padding-left: 10px;" id="password" type="password" class="validate white-text">
             <label for="password">Password</label>
         </div>
         <a href="feed.html">
-        <button class="btn waves-effect waves-light indigo darken-4 " style="width: 100%; margin-top: 2em;" type="submit" name="login">Register
-
-        </button>
+            <button class="btn waves-effect waves-light z-depth-4 login_button"
+                    type="submit" name="login"><span style="margin-top:120px;" >Register</span>
+            </button>
         </a>
 
-        <div class="white-text center-align" style="margin-top: 2em;">OR</div>
+       <br/>
+       <br/>
+        <a href="login.html" class="white-text center-align" ><span style="font-size: 15px; font-weight: bold;">Already have an account? Login.</span></a>
     </div>
 </div>
-<a href="index.html">
-    <button id="footer" class="btn waves-effect waves-light indigo darken-4 z-depth-3 btn-large" style="width: 100%; " >Already have an account! Login
-
-    </button>
-</a>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
-
-<script type="text/javascript" src="js/custom.js"></script>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript">
+    document.addEventListener("deviceready", function(){
+        // var deviceinfo = "cordova:"+device.cordova+"<br>Model:"+device.model+"<br>UUID:"+device.uuid+"<br>Platform:"+device.platform+"("+device.version+")";
+        // document.getElementById("deviceInfoText").innerHTML = deviceinfo;
+        function setTextZoomCallback(textZoom) {
+            console.log('WebView text should be scaled ' + textZoom + '%');
+        }
+        MobileAccessibility.setTextZoom(100, setTextZoomCallback);
+    },false);
+</script>
+
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
 </html>
