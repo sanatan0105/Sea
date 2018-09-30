@@ -68,6 +68,10 @@
         "source": "/Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/res/xml/config.xml"
     },
     {
+        "merged": "/Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/build/intermediates/res/merged/debug/xml_sharing_paths.xml.flat",
+        "source": "/Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/res/xml/sharing_paths.xml"
+    },
+    {
         "merged": "/Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi_icon.png.flat",
         "source": "/Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/res/mipmap-xhdpi/icon.png"
     },

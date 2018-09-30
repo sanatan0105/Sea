@@ -19,6 +19,10 @@
             {
               "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -28,6 +32,22 @@
           "/*": [
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+              "count": 1
+            }
+          ],
+          "/*/application": [
+            {
+              "xml": "<receiver android:enabled=\"true\" android:name=\"nl.xservices.plugins.ShareChooserPendingIntent\"><intent-filter><action android:name=\"android.intent.action.SEND\" /></intent-filter></receiver>",
+              "count": 1
+            }
+          ],
+          "/manifest/application": [
+            {
+              "xml": "<provider android:authorities=\"${applicationId}.sharing.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"nl.xservices.plugins.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/sharing_paths\" /></provider>",
               "count": 1
             }
           ]
@@ -68,6 +88,12 @@
       "PACKAGE_NAME": "com.kezinking.Sea"
     },
     "phonegap-plugin-mobile-accessibility": {
+      "PACKAGE_NAME": "com.kezinking.Sea"
+    },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.kezinking.Sea"
+    },
+    "cordova-plugin-x-socialsharing": {
       "PACKAGE_NAME": "com.kezinking.Sea"
     }
   },
@@ -113,12 +139,28 @@
       "clobbers": [
         "MobileAccessibilityNotifications"
       ]
+    },
+    {
+      "id": "es6-promise-plugin.Promise",
+      "file": "plugins/es6-promise-plugin/www/promise.js",
+      "pluginId": "es6-promise-plugin",
+      "runs": true
+    },
+    {
+      "id": "cordova-plugin-x-socialsharing.SocialSharing",
+      "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+      "pluginId": "cordova-plugin-x-socialsharing",
+      "clobbers": [
+        "window.plugins.socialsharing"
+      ]
     }
   ],
   "plugin_metadata": {
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-network-information": "2.0.2-dev",
-    "phonegap-plugin-mobile-accessibility": "1.0.5-dev"
+    "phonegap-plugin-mobile-accessibility": "1.0.5-dev",
+    "es6-promise-plugin": "4.2.2",
+    "cordova-plugin-x-socialsharing": "5.4.1"
   }
 }

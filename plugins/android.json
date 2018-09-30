@@ -15,10 +15,16 @@
     },
     "phonegap-plugin-mobile-accessibility": {
       "PACKAGE_NAME": "com.kezinking.Sea"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "com.kezinking.Sea"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.kezinking.Sea"
+    },
+    "es6-promise-plugin": {
       "PACKAGE_NAME": "com.kezinking.Sea"
     }
   }
