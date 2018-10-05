@@ -3,8 +3,24 @@
 <head>
 </head>
 <body>
+
+
+<div id="result"></div>
+
 <script>
     window.location.href = 'login.html'
+    if (typeof(Storage) !== "undefined") {
+        const id = localStorage.getItem("id");
+        const name = localStorage.getItem("name");
+        const phone = localStorage.getItem("phone");
+        const password = localStorage.getItem("password");
+        const token = localStorage.getItem("token");
+        document.getElementById("result").innerHTML = "id: "+id+"<br/>name: "+name+"<br/>phone: "+phone+"<br/>Password: "+password+"<br/>token:"+token;
+
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+    }
+
 </script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript">
@@ -20,4 +36,5 @@
 
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+</body>
 </html>
