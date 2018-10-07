@@ -12,7 +12,6 @@ $(document).ready(function(){
 
     $(".switch").find("input[type=checkbox]").on("change",function() {
         var status = $(this).prop('checked');
-
         if(status == true){
             $('#feed_filter').show(200);
         } else {

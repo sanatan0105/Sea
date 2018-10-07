@@ -6,7 +6,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/custom.css"  media="screen,projection"/>
-
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -117,36 +117,20 @@
 <body style="background: #fff; margin:0;">
 
 <div id="include"></div>
-<div id="main">
+<div id="main" hidden>
     <div class="container  center-align">
         <div class="row">
-            <div style="margin-top: 5em;" class="input-field col s12">
-                <select>
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                </select>
+            <div style="margin-top: 5em;" class="input-field col s12" id="category_list">
+
+                <select id="category"><option value="" >Choose your option</option><option value="5">Aankhein Shayari</option><option value="6">Aansoo Shayari</option><option value="1">abc</option><option value="7">Alone Shayari</option><option value="8">Attitude Shayari</option><option value="9">Bakwas Shayari</option><option value="10">Bewafa Shayari</option><option value="11">Birthday Shayari</option><option value="12">Bollywood Shayari</option><option value="13">Broken Heart Shayari</option><option value="14">Chand Shayari</option><option value="15">Cid Shayari</option><option value="16">Dard Bhari Shayari</option><option value="17">Desh Bhakti Shayari</option><option value="18">Dil Shayari</option><option value="19">Dooriyan Shayari</option><option value="20">Dua Shayari</option><option value="21">Friendship Shayari</option><option value="22">Funny Shayari</option><option value="23">Gham Shayari</option><option value="24">Good Morning Shayari</option><option value="25">Good Night Shayari</option><option value="26">Heart Touching Lines</option><option value="27">Hindi Poems Poetry</option><option value="28">Hindi Shayari</option><option value="29">Hurt Shayari</option><option value="30">Inspirational Shayari</option><option value="31">Insult Shayari</option><option value="32">Intezaar Shayari</option><option value="33">Judai Shayari</option><option value="34">Love Shayari</option><option value="35">Maa Shayari</option><option value="36">Mausam Shayari</option><option value="37">Maut Shayari</option><option value="38">Nafrat Shayari</option><option value="39">Punjabi Shayari</option><option value="40">Romantic Shayari</option><option value="41">Sad Shayari</option><option value="42">Sharab Shayari</option><option value="43">Shayari On Beauty</option><option value="44">Shayari On Life</option><option value="45">Sorry Shayari</option><option value="46">Two Line Shayari</option><option value="47">Welcome Shayari</option><option value="48">Yaad Shayari</option><option value="2">हिन्दी</option></select>
                 <label>Materialize Select</label>
             </div>
             <div class="input-field col s12">
                 <textarea id="textarea1" class="materialize-textarea"></textarea>
-                <label for="textarea1">Textarea</label>
+                <label for="textarea1">Write your shyari</label>
             </div>
-            <div class="row">
-                <div class="col s12">
-                    <div class="chip ">
-                        Pyar
-                        <i class="close material-icons">close</i>
-                    </div>
-                    <div class="chip ">
-                        Dhoka
-                        <i class="close material-icons">close</i>
-                    </div>
-                </div>
-            </div>
-            <a href="feed.html">
-                <button class="btn waves-effect waves-light z-depth-4 login_button"
+            <a>
+                <button class="btn waves-effect waves-light z-depth-4 login_button" id="blog_submit"
                         type="submit" name="login"><span style="margin-top:120px;" >Submit</span>
                 </button>
             </a>
@@ -160,7 +144,7 @@
 </br>
 </br>
 </br>
-
+<div id="result"></div>
 </body>
 
 <script type="text/javascript" src="cordova.js"></script>
@@ -191,11 +175,73 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script>
+
+
+
+
     $(document).ready(function() {
 
         $("#include").load('include/header.html', function () {
 
         });
+
+        $('#main').show(300);
+        $('#blog_submit').click(function(){
+            var category = $('#category').val();
+            var blog = $('#textarea1').val();
+            if(category=='') {
+                M.toast({html: "Select a category"});
+            } else if (blog=='') {
+                M.toast({html: "Write something"});
+            } else {
+                const token = localStorage.getItem("token");
+                console.log(token);
+                $.ajax({
+                    dataType: "json",
+                    headers: {
+                        'Authorization': token,
+                    },
+                    contentType: "application/json; charset=utf-8",
+                    url: "http://localhost:5000/create/",
+                    data: JSON.stringify({category: category, blog: blog}),
+                    type: "POST",
+                    success: function (msg) {
+                        $('#textarea1').val('');
+                        M.toast({html: "Blog added"});
+                        setTimeout(function(){
+                            window.location.href = 'profile.html';
+                        }, 2000);
+
+                    },
+                    error: function(msg) {
+                        console.log(msg);
+                    }
+                });
+            }
+        });
+        // $.ajax({
+        //     dataType: "json",
+        //     contentType: "application/json; charset=utf-8",
+        //     url: "http://localhost:5000/create/category",
+        //     type: "GET",
+        //     success: function (msg) {
+        //         console.log(msg);
+        //         let output = "<select><option value='' disabled selected>Choose your option</option>";
+        //         for (var i=0; i<msg.doc.length; i++) {
+        //             const category = msg.doc[i].category;
+        //             const id = msg.doc[i].id;
+        //             output +="<option value="+id+">"+category+"</option>";
+        //         }
+        //         output+="</select>";
+        //         $('#category_list').html(output);
+        //     },
+        //     error: function(msg) {
+        //         M.toast({html: msg.responseJSON.message});
+        //     }
+        // });
+
+
+
     });
 </script>
 

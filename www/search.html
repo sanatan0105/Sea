@@ -24,7 +24,7 @@
                     <div class="row" id="topbarsearch">
                         <div class="input-field col s6 s12 ">
                             <i class=" material-icons prefix">search</i>
-                            <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete ">
+                            <input type="text" onkeyup="handleLiveSearch(this.value)" placeholder="search" id="autocomplete-input" class="autocomplete ">
                         </div>
                     </div>
                 </form>
@@ -53,96 +53,21 @@
     </div>
     <div id="shyari">
         <div class="container-fluid" id="shyari_result">
-            <!--<div class="row">-->
-            <!--<div class="col s2">-->
-            <!--<center><img src="img/defaultava/2.png" height="41" width="41"-->
-            <!--class="blog-list-profile circle responsive-img"></center>-->
-            <!--</div>-->
-            <!--<div class="col s10">-->
-            <!--<p style="margin-left: 5px;"><a href="profile.html" class="blog-list-name">Shayari Sea</a><span-->
-            <!--class="grey-text darken-3 blog-list-time"> - 4 days ago</span></p>-->
-            <!--<p style="margin-left: -13px; margin-top: -10px;" class="blog-content"><a href="single.html"-->
-            <!--style="color: #000;">Mustache-->
-            <!--.</a></p>-->
-            <!--<div class="row">-->
-            <!--<div class="col s4">-->
-            <!--<div class="row">-->
-            <!--<div class="col s3">-->
-            <!--<span class="view-icon">-->
-            <!--<i class="material-icons "-->
-            <!--style="font-size: 18px; color: #828e99; margin-top: 3px; ">visibility</i>-->
-            <!--</span>-->
-            <!--</div>-->
-            <!--<div class="col s9">-->
-            <!--<span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>-->
-            <!--</div>-->
-            <!--</div>-->
-
-
-            <!--</div>-->
-            <!--<div class="col s4">-->
-            <!--<div class="row">-->
-            <!--<div class="col s3">-->
-            <!--<span class="view-icon">-->
-            <!--<i class="material-icons "-->
-            <!--style="font-size: 18px; color: #828e99; margin-top: 3px; ">thumb_up</i>-->
-            <!--</span>-->
-            <!--</div>-->
-            <!--<div class="col s9">-->
-            <!--<span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col s2">-->
-            <!--<span onclick="window.plugins.socialsharing.share('Mustache', 'The subject')"-->
-            <!--class="share-button"><i class="material-icons"-->
-            <!--style="font-size: 18px; color: #53595e; margin-top: 3px;">share</i></span>-->
-            <!--</div>-->
-            <!--<div class="col s2">-->
-            <!--<a href="https://api.whatsapp.com/send?text=Mustache ."><span class="share-button"><img-->
-            <!--src="img/whatsapp.png" width="19" height="19"/> </span></a>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<hr style="margin-top:-50px;">-->
-
         </div>
     </div>
     <div id="user">
         <ul class="collection">
             <li class="collection-item avatar">
-                <img src="img/defaultava/1.png" alt="" class="circle">
-                <span class="title">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                <a href="login.html">
+                    <img src="img/defaultava/1.png" alt="" class="circle">
+                    <span class="title">Login</span>
+                    <p>Please Login to view the users <br>
+
+                    </p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </a>
             </li>
-            <li class="collection-item avatar">
-                <i class="material-icons circle">folder</i>
-                <span class="title">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-            </li>
-            <li class="collection-item avatar">
-                <i class="material-icons circle green">insert_chart</i>
-                <span class="title">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-            </li>
-            <li class="collection-item avatar">
-                <i class="material-icons circle red">play_arrow</i>
-                <span class="title">Title</span>
-                <p>First Line <br>
-                    Second Line
-                </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-            </li>
+
         </ul>
     </div>
 </div>
@@ -188,6 +113,7 @@
         'yellow darken-4', 'amber darken-4', 'orange darken-4', 'deep-orange darken-4', 'brown darken-4', 'grey darken-4', 'blue-grey darken-4']
 
     $(document).ready(function () {
+
         $.ajax({
             dataType: "json",
             contentType: "application/json; charset=utf-8",
@@ -199,7 +125,7 @@
                     const category = msg.doc[i].category;
                     const id = msg.doc[i].id;
                     var x = Math.floor((Math.random() * colorArr.length));
-                    output += "<div class='col s6'><div class='card-panel teal " + colorArr[x] + "'><span class='white-text'>" + category + "</span></div></div>"
+                    output += "<div class='col s6'><a href='blog-from-category.html?catId="+id+"'><div class='card-panel teal " + colorArr[x] + "'><span class='white-text'>" + category + "</span></div></a></div>"
                 }
                 $('#category_result').html(output);
             },
@@ -214,7 +140,6 @@
             url: "http://192.168.0.101:5000/search/shyari",
             type: "GET",
             success: function (doc) {
-                console.log(doc.doc);
                 let shyari_output = "";
                 for (var i = 0; i < doc.doc.length; i++) {
                     const blog = doc.doc[i]
@@ -236,7 +161,7 @@
                         "                <div class='col s10'> " +
                         "                    <p style='margin-left: 5px;'><a href='profile.html' class='blog-list-name'>" + blog_owner + "</a><span " +
                         "                            class='grey-text darken-3 blog-list-time'> - " + time_create + "</span></p> " +
-                        "                    <p style='margin-left: -13px; margin-top: -10px;' class='blog-content'><a href='single.html' " +
+                        "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html' " +
                         "                                                                                              style='color: #000;'>" + blog_content + " " +
                         "                        .</a></p>" +
                         "                    <div class='row'>" +
@@ -267,7 +192,7 @@
                         "                            </div>" +
                         "                        </div>" +
                         "                        <div class='col s2'>" +
-                        "                            <span onclick='window.plugins.socialsharing.share('" + blog_content + "', 'The subject')'" +
+                        "                            <span onclick='window.plugins.socialsharing.share(\""+ blog_content +"\", \"The subject\")'" +
                         "                                  class='share-button'><i class='material-icons'" +
                         "                                                          style='font-size: 18px; color: #53595e; margin-top: 3px;'>share</i></span>" +
                         "                        </div>" +
@@ -289,6 +214,111 @@
         });
 
     })
+
+
+
+
+    function handleLiveSearch(q){
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "http://192.168.0.101:5000/search/liveSearchCategory",
+            data: JSON.stringify({ query: q}),
+            type: "POST",
+            success: function (msg) {
+                let output = "";
+                for (var i = 0; i < msg.doc.length; i++) {
+                    const category = msg.doc[i].category;
+                    const id = msg.doc[i].id;
+                    var x = Math.floor((Math.random() * colorArr.length));
+                    output += "<div class='col s6'><a href='blog-from-category.html?catId="+id+"'><div class='card-panel teal " + colorArr[x] + "'><span class='white-text'>" + category + "</span></div></a></div>"
+                }
+                $('#category_result').html(output);
+            },
+            error: function (msg) {
+                M.toast({html: msg.responseJSON.message});
+            }
+        });
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "http://192.168.0.101:5000/search/liveSearchShyari",
+            data: JSON.stringify({ query: q}),
+            type: "POST",
+            success: function (doc) {
+                let shyari_output = "";
+                for (var i = 0; i < doc.doc.length; i++) {
+                    const blog = doc.doc[i]
+                    const blog_id = blog.id;
+                    const blog_content = blog.blog;
+                    const blog_owner = blog.user.name;
+                    const time_create = blog.create_at;
+                    var visit_count = 0;
+                    if (blog.count != null) {
+                        visit_count = blog.count.count;
+                    }
+                    const like_count = blog.likes.length;
+
+                    shyari_output += "<div class='row'> " +
+                        "                <div class='col s2'>" +
+                        "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
+                        "                                 class='blog-list-profile circle responsive-img'></center> " +
+                        "                </div> " +
+                        "                <div class='col s10'> " +
+                        "                    <p style='margin-left: 5px;'><a href='profile.html' class='blog-list-name'>" + blog_owner + "</a><span " +
+                        "                            class='grey-text darken-3 blog-list-time'> - " + time_create + "</span></p> " +
+                        "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html' " +
+                        "                                                                                              style='color: #000;'>" + blog_content + " " +
+                        "                        .</a></p>" +
+                        "                    <div class='row'>" +
+                        "                        <div class='col s4'>" +
+                        "                            <div class='row'>" +
+                        "                                <div class='col s3'>" +
+                        "                                    <span class='view-icon'>" +
+                        "                                        <i class='material-icons '" +
+                        "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>visibility</i>" +
+                        "                                    </span>" +
+                        "                                </div>" +
+                        "                                <div class='col s9'>" +
+                        "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + visit_count + "</span>" +
+                        "                                </div>" +
+                        "                            </div>" +
+                        "                        </div>" +
+                        "                        <div class='col s4'>" +
+                        "                            <div class='row'>" +
+                        "                                <div class='col s3'>" +
+                        "                                    <span class='view-icon'>" +
+                        "                                        <i class='material-icons '" +
+                        "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>thumb_up</i>" +
+                        "                                    </span>" +
+                        "                                </div>" +
+                        "                                <div class='col s9'>" +
+                        "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + like_count + "</span>" +
+                        "                                </div>" +
+                        "                            </div>" +
+                        "                        </div>" +
+                        "                        <div class='col s2'>" +
+                        "                            <span onclick='window.plugins.socialsharing.share(\""+ blog_content +"\", \"The subject\")'" +
+                        "                                  class='share-button'><i class='material-icons'" +
+                        "                                                          style='font-size: 18px; color: #53595e; margin-top: 3px;'>share</i></span>" +
+                        "                        </div>" +
+                        "                        <div class='col s2'>" +
+                        "                            <a href='https://api.whatsapp.com/send?text=" + blog_content + " .'><span class='share-button'><img" +
+                        "                                    src='img/whatsapp.png' width='19' height='19'/> </span></a>" +
+                        "                        </div>" +
+                        "                    </div>" +
+                        "                </div>" +
+                        "            </div>" +
+                        "            <hr style='margin-top:-50px;'>"
+
+                }
+                $('#shyari_result').html(shyari_output);
+            },
+            error: function (msg) {
+                M.toast({html: msg.responseJSON.message});
+            }
+        });
+    }
 
 </script>
 
