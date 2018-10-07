@@ -6,234 +6,81 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="css/custom.css"  media="screen,projection"/>
-
-
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <style>
-
-
-
-    </style>
+      <style>
+          .card-panel{
+              height: 120px;
+          }
+      </style>
   </head>
-
   <body style="background: #fff; margin:0;">
-
         <div id="include"></div>
         <div id="main">
       <div class="z-depth-1">
-          <div class="container">
-              <div class="row" style="margin-bottom: 10px;">
-                  <form class="col s12">
-                      <div class="row">
-                          <div class="input-field col s12">
-                              <textarea id="textarea1" class="materialize-textarea"></textarea>
-                              <label for="textarea1">Textarea</label>
+          <div class="container" >
+              <div class="row" >
+                  <form class="col s12" style="margin-bottom: -60px;">
+                      <div class="row" id="topbarsearch">
+                          <div class="input-field col s6 s12 ">
+                              <i class=" material-icons prefix">search</i>
+                              <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete " >
                           </div>
                       </div>
                   </form>
               </div>
           </div>
-          <div class="container-fluid" style="margin-top: -70px;">
-
+          <div class="container-fluid">
               <div class="row">
                   <div class="col s12">
                       <ul class="tabs">
-                          <li class="tab col s3"><a class="active" href="#myshyari"><span style="font-size: 11px;" >My Shyari</span></a></li>
-                          <li class="tab col s3"><a href="#liked"><span style="font-size: 11px;" >Liked</span></a></li>
-                          <li class="tab col s3"><a href="#follower"><span style="font-size: 11px;" >Follower</span></a></li>
-                          <li class="tab col s3"><a href="#following"><span style="font-size: 10px;" >Following</span></a></li>
+                          <li class="tab col s3"><a class="active" href="#category"><span style="font-size: 11px;" >Category</span></a></li>
+                          <li class="tab col s3"><a href="#shyari"><span style="font-size: 11px;" >Shyari</span></a></li>
+                          <li class="tab col s3"><a href="#user"><span style="font-size: 11px;" >User</span></a></li>
                       </ul>
                   </div>
               </div>
           </div>
       </div>
       <div id="notification"></div>
-      <div id="myshyari">
+      <div id="category">
           <div class="container-fluid">
               <div class="row">
-                  <div class="col s2">
-                      <center><img src="img/defaultava/1.png" height="41" width="41" class="blog-list-profile circle responsive-img"></center>
-                  </div>
-                  <div class="col s10">
-                      <p style="margin-left: 5px;"><a href="profile.html?id=someid" class="blog-list-name">Shayari Sea</a><span class="grey-text darken-3 blog-list-time"> - 4 days ago</span></p>
-                      <p style="margin-left: -13px; margin-top: -10px;" class="blog-content"><a href="single.html" style="color: #000;"> Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage.</a></p>
-                      <div class="row">
-                          <div class="col s4">
-                              <div class="row">
-                                  <div class="col s3">
-                                        <span class="view-icon">
-                                            <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">visibility</i>
-                                        </span>
-                                  </div>
-                                  <div class="col s9">
-                                      <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                  </div>
-                              </div>
-
-
-                          </div>
-                          <div class="col s4">
-                              <div class="row">
-                                  <div class="col s3">
-                                        <span class="view-icon">
-                                            <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">thumb_up</i>
-                                        </span>
-                                  </div>
-                                  <div class="col s9">
-                                      <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col s2">
-                              <span onclick="window.plugins.socialsharing.share('Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90\'s microdosing irony forage', 'The subject')"  class="share-button"><i class="material-icons" style="font-size: 18px; color: #53595e; margin-top: 3px;">share</i></span>
-                          </div>
-                          <div class="col s2">
-                              <a href="https://api.whatsapp.com/send?text=Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage."><span class="share-button"><img src="img/whatsapp.png"  width="19" height="19" /> </span></a>
-                          </div>
+                  <div class="col s6">
+                      <div class="card-panel teal " >
+                        <span class="white-text">I am a very simple card. (100)</span>
                       </div>
                   </div>
-
-              </div>
-              <hr style="margin-top:-50px;">
-              <div class="row">
-                  <div class="col s2">
-                      <center><img src="img/defaultava/2.png" height="41" width="41" class="blog-list-profile circle responsive-img"></center>
-                  </div>
-                  <div class="col s10">
-                      <p style="margin-left: 5px;"><a href="profile.html?id=someid" class="blog-list-name">Shayari Sea</a><span class="grey-text darken-3 blog-list-time"> - 4 days ago</span></p>
-                      <p style="margin-left: -13px; margin-top: -10px;" class="blog-content"><a href="single.html" style="color: #000;">Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage.</a></p>
-                      <div class="row">
-                          <div class="col s4">
-                              <div class="row">
-                                  <div class="col s3">
-                                        <span class="view-icon">
-                                            <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">visibility</i>
-                                        </span>
-                                  </div>
-                                  <div class="col s9">
-                                      <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                  </div>
-                              </div>
-
-
-                          </div>
-                          <div class="col s4">
-                              <div class="row">
-                                  <div class="col s3">
-                                        <span class="view-icon">
-                                            <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">thumb_up</i>
-                                        </span>
-                                  </div>
-                                  <div class="col s9">
-                                      <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col s2">
-                              <span onclick="window.plugins.socialsharing.share('Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90\'s microdosing irony forage', 'The subject')" class="share-button"><i class="material-icons" style="font-size: 18px; color: #53595e; margin-top: 3px;">share</i></span>
-                          </div>
-                          <div class="col s2">
-                              <a href="https://api.whatsapp.com/send?text=Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage."><span class="share-button"><img src="img/whatsapp.png"  width="19" height="19" /> </span></a>
-                          </div>
+                  <div class="col s6">
+                      <div class="card-panel teal" style="max-height: 120px;">
+                          <span class="white-text">I am a very simple card. </span>
                       </div>
                   </div>
-
-              </div>
-              <hr style="margin-top:-50px;">
-              <div class="row">
-                  <div class="col s2">
-                      <center><img src="img/defaultava/1.png" height="41" width="41" class="blog-list-profile circle responsive-img"></center>
-                  </div>
-                  <div class="col s10">
-                      <p style="margin-left: 5px;"><a href="profile.html?id=someid" class="blog-list-name">Shayari Sea</a><span class="grey-text darken-3 blog-list-time"> - 4 days ago</span></p>
-                      <p style="margin-left: -13px; margin-top: -10px;" class="blog-content"><a href="single.html" style="color: #000;">Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage.</a></p>
-                      <div class="row">
-                          <div class="col s4">
-                              <div class="row">
-                                  <div class="col s3">
-                                    <span class="view-icon">
-                                        <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">visibility</i>
-                                    </span>
-                                  </div>
-                                  <div class="col s9">
-                                      <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                  </div>
-                              </div>
-
-
-                          </div>
-                          <div class="col s4">
-                              <div class="row">
-                                  <div class="col s3">
-                                    <span class="view-icon">
-                                        <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">thumb_up</i>
-                                    </span>
-                                  </div>
-                                  <div class="col s9">
-                                      <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col s2">
-                              <span onclick="window.plugins.socialsharing.share('Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90\'s microdosing irony forage', 'The subject')" class="share-button"><i class="material-icons" style="font-size: 18px; color: #53595e; margin-top: 3px;">share</i></span>
-                          </div>
-                          <div class="col s2">
-                              <a href="https://api.whatsapp.com/send?text=Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage."><span class="share-button"><img src="img/whatsapp.png"  width="19" height="19" /> </span></a>
-                          </div>
+                  <div class="col s6">
+                      <div class="card-panel teal" style="max-height: 120px;">
+                          <span class="white-text">I am a very simple card. </span>
                       </div>
                   </div>
-
-              </div>
-              <hr style="margin-top:-50px;">
-              <div class="row">
-                  <div class="col s2">
-                      <center><img src="img/defaultava/2.png" height="41" width="41" class="blog-list-profile circle responsive-img"></center>
-                  </div>
-                  <div class="col s10">
-                      <p style="margin-left: 5px;"><a  href="profile.html" class="blog-list-name">Shayari Sea</a><span class="grey-text darken-3 blog-list-time"> - 4 days ago</span></p>
-                      <p style="margin-left: -13px; margin-top: -10px;" class="blog-content"><a href="single.html" style="color: #000;">Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage.</a></p>
-                      <div class="row">
-                          <div class="col s4">
-                              <div class="row">
-                                  <div class="col s3">
-                                    <span class="view-icon">
-                                        <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">visibility</i>
-                                    </span>
-                                  </div>
-                                  <div class="col s9">
-                                      <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                  </div>
-                              </div>
-
-
-                          </div>
-                          <div class="col s4">
-                              <div class="row">
-                                  <div class="col s3">
-                                    <span class="view-icon">
-                                        <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">thumb_up</i>
-                                    </span>
-                                  </div>
-                                  <div class="col s9">
-                                      <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col s2">
-                              <span onclick="window.plugins.socialsharing.share('Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90\'s microdosing irony forage', 'The subject')" class="share-button"><i class="material-icons" style="font-size: 18px; color: #53595e; margin-top: 3px;">share</i></span>
-                          </div>
-                          <div class="col s2">
-                              <a href="https://api.whatsapp.com/send?text=Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage."><span class="share-button"><img src="img/whatsapp.png"  width="19" height="19" /> </span></a>
-                          </div>
+                  <div class="col s6">
+                      <div class="card-panel teal" style="max-height: 120px;">
+                          <span class="white-text">I am a very simple card. </span>
                       </div>
                   </div>
-
+                  <div class="col s6">
+                      <div class="card-panel teal" style="max-height: 120px;">
+                          <span class="white-text">I am a very simple card. </span>
+                      </div>
+                  </div>
+                  <div class="col s6">
+                      <div class="card-panel teal" style="max-height: 120px;">
+                          <span class="white-text">I am a very simple card. </span>
+                      </div>
+                  </div>
               </div>
-              <hr style="margin-top:-50px;">
+
           </div>
       </div>
-      <div id="liked">
+      <div id="shyari">
           <div class="container-fluid">
               <div class="row">
                   <div class="col s2">
@@ -282,43 +129,7 @@
               <hr style="margin-top:-50px;">
           </div>
       </div>
-      <div id="follower">
-          <ul class="collection">
-              <li class="collection-item avatar">
-                  <img src="img/defaultava/1.png" alt="" class="circle">
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                      Second Line
-                  </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-              </li>
-              <li class="collection-item avatar">
-                  <i class="material-icons circle">folder</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                      Second Line
-                  </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-              </li>
-              <li class="collection-item avatar">
-                  <i class="material-icons circle green">insert_chart</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                      Second Line
-                  </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-              </li>
-              <li class="collection-item avatar">
-                  <i class="material-icons circle red">play_arrow</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                      Second Line
-                  </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-              </li>
-          </ul>
-      </div>
-      <div id="following">
+      <div id="user">
           <ul class="collection">
               <li class="collection-item avatar">
                   <img src="img/defaultava/1.png" alt="" class="circle">
@@ -388,12 +199,13 @@
       </script>
       <script src="js/jquery.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/custom.js"></script>
       <script>
-
+          const colorArr = []
 
 
       </script>
 
-      <script type="text/javascript" src="js/custom.js"></script>
+
   </body>
 </html>
