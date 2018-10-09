@@ -11,15 +11,15 @@ INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/m
 	android:name
 		ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:17:135-183
 manifest
-ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
+ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-27:12
 MERGED from [com.android.support:support-v4:24.1.1] /Users/sanatanbhardwaj/.gradle/caches/transforms-1/files-1.1/support-v4-24.1.1.aar/c02a2c6cde92cfef5cc943950fd9907d/AndroidManifest.xml:17:1-27:12
 MERGED from [:CordovaLib] /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml:20:1-27:12
-INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:1-27:12
 	package
 		ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:2:102-129
 		INJECTED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml
@@ -124,6 +124,18 @@ uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:23:5-81
 	android:name
 		ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:23:22-78
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:24:5-81
+	android:name
+		ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:24:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:25:5-79
+	android:name
+		ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:25:22-76
+uses-feature#android.hardware.location.gps
+ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:26:5-66
+	android:name
+		ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:26:19-63
 meta-data#android.support.FILE_PROVIDER_PATHS
 ADDED from /Users/sanatanbhardwaj/Desktop/sea/Sea/platforms/android/app/src/main/AndroidManifest.xml:18:13-115
 	android:resource

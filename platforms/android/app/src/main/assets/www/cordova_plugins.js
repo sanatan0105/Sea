@@ -54,6 +54,20 @@ module.exports = [
     "clobbers": [
       "window.plugins.socialsharing"
     ]
+  },
+  {
+    "id": "cordova-plugin-geolocation.geolocation",
+    "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
+    "pluginId": "cordova-plugin-geolocation",
+    "clobbers": [
+      "navigator.geolocation"
+    ]
+  },
+  {
+    "id": "cordova-plugin-geolocation.PositionError",
+    "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+    "pluginId": "cordova-plugin-geolocation",
+    "runs": true
   }
 ];
 module.exports.metadata = 
@@ -64,7 +78,8 @@ module.exports.metadata =
   "cordova-plugin-network-information": "2.0.2-dev",
   "phonegap-plugin-mobile-accessibility": "1.0.5-dev",
   "es6-promise-plugin": "4.2.2",
-  "cordova-plugin-x-socialsharing": "5.4.1"
+  "cordova-plugin-x-socialsharing": "5.4.1",
+  "cordova-plugin-geolocation": "4.0.1"
 };
 // BOTTOM OF METADATA
 });

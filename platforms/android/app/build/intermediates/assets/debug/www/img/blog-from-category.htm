@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://localhost:63342/Sea/www/blog-from-category.html?catId=5 -->
+<html xmlns="http://www.w3.org/1999/html"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <!--Import Google Icon Font-->
+    <link href="./blog-from-category_files/icon" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="./blog-from-category_files/materialize.min.css" media="screen,projection">
+    <link type="text/css" rel="stylesheet" href="./blog-from-category_files/custom.css" media="screen,projection">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .card-panel {
+            height: 90px;
+        }
+    </style>
+</head>
+<body style="background: #fff; margin:0;">
+    <div id="include"><style>
+    .sidenav li>a {
+        color: rgba(0, 0, 0, 0.87);
+        display: block;
+        font-size: 11px;
+        font-weight: 400;
+        height: 48px;
+        line-height: 48px;
+        padding: 0 32px;
+    }
+</style>
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper indigo darken-4">
+            <a href="http://localhost:63342/Sea/www/blog-from-category.html?catId=5#!" data-target="slide-out" class="brand-logo left sidenav-trigger" style="font-size: 27px; font-weight: bold; "><img src="./blog-from-category_files/defaultprofile.png" width="40" height="40" class="circle responsive-img" style="margin-top: 7px;"></a>
+            <ul class="right">
+                <li><a href="http://localhost:63342/Sea/www/search.html"><i class="material-icons">search</i></a></li>
+                <li><a href="http://localhost:63342/Sea/www/notification.html"><i class="material-icons">notifications_none</i></a></li>
+                <li><a href="http://localhost:63342/Sea/www/blog-from-category.html?catId=5#!" class="dropdown-trigger" data-target="dropdown1"><i class="material-icons ">more_vert</i></a><ul id="dropdown1" class="dropdown-content dropdown-content" tabindex="0">
+    <li tabindex="0"><a href="http://localhost:63342/Sea/www/blog-from-category.html?catId=5#!" class="black-text">Settings</a></li>
+
+</ul></li>
+                <div class="dropdown-content" id="myDropdown">
+
+
+
+                </div>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+        <div class="background">
+            <img src="./blog-from-category_files/1a237e.png">
+        </div>
+        <a href="http://localhost:63342/Sea/www/blog-from-category.html?catId=5#user"><img class="circle" src="./blog-from-category_files/defaultprofile.png"></a>
+        <a href="http://localhost:63342/Sea/www/blog-from-category.html?catId=5#name"><span class="name white-text">John Doe</span></a>
+        <a href="http://localhost:63342/Sea/www/blog-from-category.html?catId=5#email"><span class="email " style="color: #b0bec5; font-size: 12px;">@jhon</span></a>
+        <a style="margin-top: -40px;" href="http://localhost:63342/Sea/www/blog-from-category.html?catId=5"><span class="white-text">30 </span><span style="color: #b0bec5;font-size: 13px;">Following</span>&#8194; <span class="white-text"> 20</span><span style="color: #b0bec5;font-size: 13px;"> Followers</span></a>
+    </div></li>
+    <li><a href="http://localhost:63342/Sea/www/feed.html"><i class="material-icons">home</i>Home</a></li>
+    <li><a href="http://localhost:63342/Sea/www/profile.html"><i class="material-icons">person</i>My Profile</a></li>
+    <li><a href="http://localhost:63342/Sea/www/profile.html?type=myshyari"><i class="material-icons">create</i>My Shyari</a></li>
+    <li><a href="http://localhost:63342/Sea/www/profile.html?type=liked"><i class="material-icons">thumb_up</i>Liked Shyari</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">About Us</a></li>
+    <li><a href="http://localhost:63342/Sea/www/blog-from-category.html?catId=5#!"><i class="material-icons">contact_support</i>Who are we</a></li>
+    <li><a href="http://localhost:63342/Sea/www/blog-from-category.html?catId=5#!"><i class="material-icons">call</i>Contact</a></li>
+</ul></div>
+    <div id="main">
+        <div id="notification"></div>
+        <div id="shyari">
+            <div class="container-fluid" id="shyari_result">
+            </div>
+        </div>
+    </div>
+
+    <div id="result"></div>
+    <div class="fixed-action-btn" style="margin-bottom: 30px;">
+        <a href="http://localhost:63342/Sea/www/create.html" class="btn-floating btn-large indigo darken-4 z-depth-5" style="">
+            <i class="large material-icons" style="margin-top: -3px;">mode_edit</i>
+        </a>
+    </div>
+
+    <script type="text/javascript" src="./blog-from-category_files/cordova.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("deviceready", function () {
+            // var deviceinfo = "cordova:"+device.cordova+"<br>Model:"+device.model+"<br>UUID:"+device.uuid+"<br>Platform:"+device.platform+"("+device.version+")";
+            // document.getElementById("deviceInfoText").innerHTML = deviceinfo;
+            function setTextZoomCallback(textZoom) {
+                console.log('WebView text should be scaled ' + textZoom + '%');
+            }
+
+            MobileAccessibility.setTextZoom(110, setTextZoomCallback);
+        }, false);
+
+
+    </script>
+    <script src="./blog-from-category_files/pulltorefresh.js" type="text/javascript"></script>
+    <script>
+        PullToRefresh.init({
+            mainElement: '#main',
+            onRefresh: function () {
+                // What do you want to do when the user does the pull-to-refresh gesture
+                window.location.reload();
+            }
+        });
+    </script>
+    <script src="./blog-from-category_files/jquery.min.js"></script>
+    <script type="text/javascript" src="./blog-from-category_files/materialize.min.js"></script>
+    <script type="text/javascript" src="./blog-from-category_files/custom.js"></script>
+    <script>
+        $(document).ready(function () {
+            var get_id =  window.location.href.split("=")[1];
+            $.ajax({
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                url: "http://192.168.0.101:5000/search/shyari-by-cat",
+                type: "GET",
+                data: JSON.stringify({cat_id: get_id}),
+                success: function (doc) {
+
+                },
+                error: function (msg) {
+                    M.toast({html: msg.responseJSON.message});
+                }
+            });
+
+        })
+
+    </script>
+
+
+
+
+<div class="sidenav-overlay"></div><div class="drag-target"></div></body></html>

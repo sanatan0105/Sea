@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
+    <meta charset="UTF-8">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -133,6 +134,7 @@
                 M.toast({html: msg.responseJSON.message});
             }
         });
+        $('#category_result').html('<div class="progress"><div class="indeterminate"></div></div>');
 
         $.ajax({
             dataType: "json",
@@ -161,7 +163,7 @@
                         "                <div class='col s10'> " +
                         "                    <p style='margin-left: 5px;'><a href='profile.html' class='blog-list-name'>" + blog_owner + "</a><span " +
                         "                            class='grey-text darken-3 blog-list-time'> - " + time_create + "</span></p> " +
-                        "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html' " +
+                        "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html?blogid="+ blog_id +"' " +
                         "                                                                                              style='color: #000;'>" + blog_content + " " +
                         "                        .</a></p>" +
                         "                    <div class='row'>" +
@@ -212,11 +214,9 @@
                 M.toast({html: msg.responseJSON.message});
             }
         });
+        $('#shyari_result').html('<div class="progress"><div class="indeterminate"></div></div>');
 
     })
-
-
-
 
     function handleLiveSearch(q){
         $.ajax({
@@ -239,6 +239,7 @@
                 M.toast({html: msg.responseJSON.message});
             }
         });
+        $('#category_result').html('<div class="progress"><div class="indeterminate"></div></div>');
         $.ajax({
             dataType: "json",
             contentType: "application/json; charset=utf-8",
@@ -267,7 +268,7 @@
                         "                <div class='col s10'> " +
                         "                    <p style='margin-left: 5px;'><a href='profile.html' class='blog-list-name'>" + blog_owner + "</a><span " +
                         "                            class='grey-text darken-3 blog-list-time'> - " + time_create + "</span></p> " +
-                        "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html' " +
+                        "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html?blogid="+ blog_id +"' " +
                         "                                                                                              style='color: #000;'>" + blog_content + " " +
                         "                        .</a></p>" +
                         "                    <div class='row'>" +
@@ -318,6 +319,7 @@
                 M.toast({html: msg.responseJSON.message});
             }
         });
+        $('#shyari_result').html('<div class="progress"><div class="indeterminate"></div></div>');
     }
 
 </script>

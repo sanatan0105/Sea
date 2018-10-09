@@ -7,8 +7,8 @@
   "_phantomChildren": {},
   "_requested": {
     "type": "git",
-    "raw": "https://github.com/apache/cordova-plugin-network-information.git",
-    "rawSpec": "https://github.com/apache/cordova-plugin-network-information.git",
+    "raw": "git+https://github.com/apache/cordova-plugin-network-information.git",
+    "rawSpec": "git+https://github.com/apache/cordova-plugin-network-information.git",
     "saveSpec": "git+https://github.com/apache/cordova-plugin-network-information.git",
     "fetchSpec": "https://github.com/apache/cordova-plugin-network-information.git",
     "gitCommittish": null
@@ -17,8 +17,8 @@
     "#USER",
     "/"
   ],
-  "_resolved": "git+https://github.com/apache/cordova-plugin-network-information.git#e816db482011d2eed6ffcceebcbc5ebfcd72782e",
-  "_spec": "https://github.com/apache/cordova-plugin-network-information.git",
+  "_resolved": "git+https://github.com/apache/cordova-plugin-network-information.git#0796cf953358e900659eca8d347fd5386cc80183",
+  "_spec": "git+https://github.com/apache/cordova-plugin-network-information.git",
   "_where": "/Users/sanatanbhardwaj/Desktop/sea/Sea",
   "author": {
     "name": "Apache Software Foundation"

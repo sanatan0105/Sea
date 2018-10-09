@@ -23,6 +23,10 @@
             {
               "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.Geolocation\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -36,6 +40,18 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-feature android:name=\"android.hardware.location.gps\" />",
               "count": 1
             }
           ],
@@ -95,6 +111,9 @@
     },
     "cordova-plugin-x-socialsharing": {
       "PACKAGE_NAME": "com.kezinking.Sea"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.kezinking.Sea"
     }
   },
   "dependent_plugins": {},
@@ -153,6 +172,20 @@
       "clobbers": [
         "window.plugins.socialsharing"
       ]
+    },
+    {
+      "id": "cordova-plugin-geolocation.geolocation",
+      "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
+      "pluginId": "cordova-plugin-geolocation",
+      "clobbers": [
+        "navigator.geolocation"
+      ]
+    },
+    {
+      "id": "cordova-plugin-geolocation.PositionError",
+      "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+      "pluginId": "cordova-plugin-geolocation",
+      "runs": true
     }
   ],
   "plugin_metadata": {
@@ -161,6 +194,7 @@
     "cordova-plugin-network-information": "2.0.2-dev",
     "phonegap-plugin-mobile-accessibility": "1.0.5-dev",
     "es6-promise-plugin": "4.2.2",
-    "cordova-plugin-x-socialsharing": "5.4.1"
+    "cordova-plugin-x-socialsharing": "5.4.1",
+    "cordova-plugin-geolocation": "4.0.1"
   }
 }

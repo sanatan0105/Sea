@@ -7,34 +7,61 @@
 
 <div id="result"></div>
 
-<script>
-    window.location.href = 'create.html'
-    if (typeof(Storage) !== "undefined") {
-        const id = localStorage.getItem("id");
-        const name = localStorage.getItem("name");
-        const phone = localStorage.getItem("phone");
-        const password = localStorage.getItem("password");
-        const token = localStorage.getItem("token");
-        document.getElementById("result").innerHTML = "id: "+id+"<br/>name: "+name+"<br/>phone: "+phone+"<br/>Password: "+password+"<br/>token:"+token;
 
-    } else {
-        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
-    }
-
-</script>
+<script src="js/jquery.min.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript">
-    document.addEventListener("deviceready", function(){
-        // var deviceinfo = "cordova:"+device.cordova+"<br>Model:"+device.model+"<br>UUID:"+device.uuid+"<br>Platform:"+device.platform+"("+device.version+")";
-        // document.getElementById("deviceInfoText").innerHTML = deviceinfo;
-        function setTextZoomCallback(textZoom) {
-            console.log('WebView text should be scaled ' + textZoom + '%');
-        }
-        MobileAccessibility.setTextZoom(100, setTextZoomCallback);
-    },false);
-</script>
 
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript" src="js/custom.js"></script>
+
+
+    function checkConnection() {
+        var networkState = navigator.connection.type;
+
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.CELL]     = 'Cell generic connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        return ( states[networkState]);
+    }
+
+    document.addEventListener("deviceready", function(){
+        const connectivity = checkConnection();
+
+        if(connectivity == 'No network connection') {
+            window.location.href = 'no-internet.html';
+        } else {
+            $.ajax({
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                url: "http://192.168.0.101:5000/version",
+                type: "GET",
+                success: function (msg) {
+                    const version = msg.doc.version;
+                    const localAppVersio = 1;
+                    if(version==localAppVersio){
+                       var token = localStorage.getItem("token");
+                       if (token != null){
+                           window.location.href = 'search-logged-in.html';
+                       } else {
+                           window.location.href = 'search.html';
+                       }
+                    } else {
+                        window.location.href = 'app-update.html';
+                    }
+                },
+                error: function(msg) {
+                    alert('124');
+                    alert(JSON.stringify(msg));
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>

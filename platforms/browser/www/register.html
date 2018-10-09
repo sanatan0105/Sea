@@ -5,8 +5,8 @@
     <title>Device Info</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="css/custom.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/custom.css" media="screen,projection"/>
 
 
     <!--Let browser know website is optimized for mobile-->
@@ -17,29 +17,35 @@
             height: 100%;
             background: linear-gradient(to bottom, #363795, #005C97) fixed; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         }
+
         /* label color */
         .input-field label {
             color: #fff;
         }
+
         /* label focus color */
         .input-field input[type=text]:focus + label {
             color: #fff;
         }
+
         /* label underline focus color */
         .input-field input[type=text]:focus {
             border-bottom: 1px solid #fff;
             box-shadow: 0 1px 0 0 #fff;
         }
+
         /* valid color */
         .input-field input[type=text].valid {
             border-bottom: 1px solid #fff;
             box-shadow: 0 1px 0 0 #fff;
         }
+
         /* invalid color */
         .input-field input[type=text].invalid {
             border-bottom: 1px solid #fff;
             box-shadow: 0 1px 0 0 #fff;
         }
+
         /* icon prefix focus color */
         .input-field .prefix.active {
             color: #fff;
@@ -50,40 +56,47 @@
             color: white;
         }
 
-
         /* label focus color */
         .input-field input:focus + label {
             color: #fff !important;
         }
+
         /* label underline focus color */
         .row .input-field input:focus {
             border-bottom: 1px solid #FFF !important;
             box-shadow: 0 1px 0 0 #fff !important
         }
+
         #footer {
             position: fixed;
             bottom: 0;
             width: 100%;
         }
+
         #or #or-text {
             background: #f2f0e4;
             padding: 0 20px;
-            Text-align : Center;
-        }  #or+* {
-               border-top: solid 2px #adac97;
-               padding-top: 28px;
-               margin-top: -28px;
-           }
+            Text-align: Center;
+        }
+
+        #or + * {
+            border-top: solid 2px #adac97;
+            padding-top: 28px;
+            margin-top: -28px;
+        }
+
         button {
 
         }
-        .login_button{
+
+        .login_button {
             width: 70%;
             height: 28%;
-            margin-top:2em;
-            background: #005C97;  /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #363795, #004197);  /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #363795, #004197);color: white;
+            margin-top: 2em;
+            background: #005C97; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #363795, #004197); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #363795, #004197);
+            color: white;
             font-weight: bold;
             filter: brightness(90%);
             transition: 150ms filter ease;
@@ -94,49 +107,183 @@
 </head>
 <body>
 
-<div class="container  center-align">
-    <p style="font-size: 4.7em;" class="white-text">SS</p>
-    <div style="font-size: 20px; margin-top: -2em;" class="center-align white-text" >Welcome to Shayari Sea</div>
-    <p class="white-text">Create an account to continue</p>
-    <div class="row">
-        <div class="input-field col s12">
-            <input style="padding-left: 10px;" id="name" type="number" class="validate white-text">
-            <label for="name">Name</label>
-        </div>
-        <div class="input-field col s12">
-            <input style="padding-left: 10px;" id="phone" type="number" class="validate white-text">
-            <label for="phone">Phone Number</label>
-        </div>
-        <div class="input-field col s12">
-            <input style="padding-left: 10px;" id="password" type="password" class="validate white-text">
-            <label for="password">Password</label>
-        </div>
-        <a href="feed.html">
-            <button class="btn waves-effect waves-light z-depth-4 login_button"
-                    type="submit" name="login"><span style="margin-top:120px;" >Register</span>
-            </button>
-        </a>
+    <div class="container  center-align">
+        <p style="font-size: 4.7em;" class="white-text">SS</p>
+        <div style="font-size: 20px; margin-top: -2em;" class="center-align white-text">Welcome to Shayari Sea</div>
+        <p class="white-text">Create an account to continue</p>
+        <div class="row">
+            <div class="input-field col s12">
+                <input style="padding-left: 10px;" id="name" type="text" class="validate white-text">
+                <label for="name">Name</label>
+            </div>
+            <div class="input-field col s12">
+                <input style="padding-left: 10px;" id="phone" type="number" class="validate white-text">
+                <label for="phone">Phone Number</label>
+            </div>
+            <div class="input-field col s12">
+                <input style="padding-left: 10px;" id="password" type="password" class="validate white-text">
+                <label for="password">Password</label>
+            </div>
+            <a>
+                <button id="register_btn" class="btn waves-effect waves-light z-depth-4 login_button"
+                        type="submit" name="login"><span style="margin-top:120px;">Register</span>
+                </button>
+            </a>
 
-       <br/>
-       <br/>
-        <a href="login.html" class="white-text center-align" ><span style="font-size: 15px; font-weight: bold;">Already have an account? Login.</span></a>
+            <br/>
+            <br/>
+            <a href="login.html" class="white-text center-align"><span style="font-size: 14px; font-weight: 700;">Already have an account? <span style="font-weight: 900; font-size: 16px;">Login</span> </span></a>
+        </div>
     </div>
-</div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript">
-    document.addEventListener("deviceready", function(){
+    document.addEventListener("deviceready", function () {
         // var deviceinfo = "cordova:"+device.cordova+"<br>Model:"+device.model+"<br>UUID:"+device.uuid+"<br>Platform:"+device.platform+"("+device.version+")";
         // document.getElementById("deviceInfoText").innerHTML = deviceinfo;
         function setTextZoomCallback(textZoom) {
             console.log('WebView text should be scaled ' + textZoom + '%');
         }
+
         MobileAccessibility.setTextZoom(100, setTextZoomCallback);
-    },false);
+    }, false);
 </script>
 
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+
+<script>
+
+    function validatePhone(txtPhone) {
+
+        if (txtPhone.length == 0){
+            return false;
+        }
+
+        var filter = /^(\+91[\-\s]?)?[0]?(91)?[6789]\d{9}$/;
+        if (filter.test(txtPhone)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    function validateName(name){
+        if (name.length < 2){
+            return "Name must be of minimum 3 characters";
+        }
+        else{
+            return "Ok";
+        }
+    }
+    function validatePassword(pass){
+        if (pass.length<4){
+            return "Name must be of minimum 3 characters";
+        }
+        else{
+            return "Ok";
+        }
+    }
+    $(document).ready(function() {
+        $('#register_btn').click(function(){
+            var name = $('#name').val();
+            var phone = $('#phone').val();
+            var pass = $('#password').val();
+
+            if (name.length == 0){
+                M.toast({html: 'Name is needed'});
+            }
+            else if(phone.length == 0){
+                M.toast({html: 'Phone number is needed'});
+            }
+            else if(pass.length == 0){
+                M.toast({html: 'password is needed'});
+            } else {
+
+
+                if(validateName(name) !="Ok"){
+                    M.toast({html: 'Name must be of minimum 3 characters'});
+                }
+                else if (validatePhone(phone) === false){
+                    M.toast({html: 'Wrong number entered'});
+                }
+                else if(validatePassword(pass) != "Ok" ){
+                    M.toast({html: 'Minimum 4 character is required for password'});
+                }
+
+                else{
+                    $.ajax({
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        url: "http://localhost:5000/loginRegister/signup",
+                        type: "POST",
+                        data: JSON.stringify({phone: phone, password: pass, name: name}),
+                        success: function (msg) {
+                            console.log(msg);
+                            var status = msg.status;
+                            var phone = msg.body.phone
+
+                            // alert(message+"<br/>"+status+"<br/>"+id+"<br/>"+name+"<br/>"+password+"<br/>"+phone)
+
+                            if (status == "Success"){
+                                $.ajax({
+                                    dataType: "json",
+                                    contentType: "application/json; charset=utf-8",
+                                    url: "http://localhost:5000/loginRegister/login",
+                                    type: "POST",
+                                    data: JSON.stringify({phone: phone, password: pass}),
+                                    success: function (msg) {
+
+                                        let token = msg.token;
+                                        const id = msg.userDetails.id;
+                                        const name = msg.userDetails.name;
+                                        const password = msg.userDetails.password;
+                                        const phone = msg.userDetails.phone;
+                                        token = "Bearer "+token;
+                                        if (typeof(Storage) !== "undefined") {
+                                            localStorage.setItem("id", id);
+                                            localStorage.setItem("name", name);
+                                            localStorage.setItem("phone", phone);
+                                            localStorage.setItem("password", password);
+                                            localStorage.setItem("token", token);
+                                            window.location.href = 'index.html';
+                                        } else {
+                                            //TODO: Set another method to store userdata
+                                            M.toast({html: "Sorry, your browser does not support Web Storage"});
+                                        }
+                                    },
+                                    error: function(msg) {
+                                        //any error to be handled
+                                        M.toast({html: "Registered Successfully. You can login now"});
+                                    }
+                                });
+                            }
+                        },
+                        error: function(msg) {
+                            //any error to be handled
+                            console.log();
+                            M.toast({html: msg.responseJSON.message});
+                        }
+                    });
+
+                }
+
+
+
+            }
+
+
+
+
+        })
+
+    })
+
+
+</script>
+
+
 </html>

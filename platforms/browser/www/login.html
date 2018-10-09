@@ -60,23 +60,7 @@
             border-bottom: 1px solid #FFF !important;
             box-shadow: 0 1px 0 0 #fff !important
         }
-        #footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        #or #or-text {
-            background: #f2f0e4;
-            padding: 0 20px;
-            Text-align : Center;
-        }  #or+* {
-               border-top: solid 2px #adac97;
-               padding-top: 28px;
-               margin-top: -28px;
-           }
-        button {
 
-        }
         .login_button{
             width: 70%;
             height: 28%;
@@ -107,14 +91,14 @@
             <label for="password">Password</label>
         </div>
         <p class="white-text center-align">Forget your password? <a href="forgot-password.html" class="white-text" style="font-size: 15px; font-weight: bold;">Reset Password</a></p>
-        <a href="feed.html">
-            <button class="btn waves-effect waves-light z-depth-4 login_button"
+        <a>
+            <button id="login_button" class="btn waves-effect waves-light z-depth-4 login_button"
                     type="submit" name="login"><span style="margin-top:120px;" >login</span>
             </button>
         </a>
 
         <div class="white-text center-align" style="margin-top: 2em;">OR</div>
-        <a href="register.html" class="white-text center-align" ><span style="font-size: 15px; font-weight: bold;">Don't have an account? Sign Up.</span></a>
+        <a href="register.html" class="white-text center-align" ><span style="font-size: 14px; font-weight: 700;">Don't have an account? <span style="font-weight: 900; font-size: 16px;">Sign Up.</span> </span></a>
     </div>
 </div>
 </body>
@@ -134,4 +118,85 @@
 
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+
+
+<script>
+
+    function validatePhone(txtPhone) {
+
+        if (txtPhone.length == 0){
+            return false;
+        }
+
+        var filter = /^(\+91[\-\s]?)?[0]?(91)?[6789]\d{9}$/;
+        if (filter.test(txtPhone)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    function validatePassword(pass){
+        if (pass.length<4){
+            return "Name must be of minimum 3 characters";
+        }
+        else{
+            return "Ok";
+        }
+    }
+    $(document).ready(function() {
+        $('#login_button').click(function(){
+            var phone = $('#phone').val();
+            var pass = $('#password').val();
+
+            if(phone.length == 0){
+                M.toast({html: 'Phone number is needed'});
+            }
+            else if(pass.length == 0){
+                M.toast({html: 'password is needed'});
+            } else {
+                if (validatePhone(phone) === false){
+                    M.toast({html: 'Wrong number entered'});
+                } else if(validatePassword(pass) != "Ok" ){
+                    M.toast({html: 'Minimum 4 character is required for password'});
+                } else {
+
+                    $.ajax({
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        url: "http://localhost:5000/loginRegister/login",
+                        type: "POST",
+                        data: JSON.stringify({phone: phone, password: pass}),
+                        success: function (msg) {
+
+                            let token = msg.token;
+                            const id = msg.userDetails.id;
+                            const name = msg.userDetails.name;
+                            const password = msg.userDetails.password;
+                            const phone = msg.userDetails.phone;
+                            token = "Bearer "+token;
+                            if (typeof(Storage) !== "undefined") {
+                                localStorage.setItem("name", name);
+                                localStorage.setItem("phone", phone);
+                                localStorage.setItem("token", token);
+                                window.location.href = 'index.html';
+                            } else {
+                                //TODO: Set another method to store userdata
+                                M.toast({html: "Sorry, your browser does not support Web Storage"});
+                            }
+                        },
+                        error: function(msg) {
+                            M.toast({html: msg.responseJSON.message});
+                        }
+                    });
+                }
+            }
+        })
+    })
+
+
+</script>
+
+
 </html>

@@ -76,7 +76,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.3",
     "phonegap-plugin-mobile-accessibility": "1.0.5-dev",
     "es6-promise-plugin": "4.2.2",
-    "cordova-plugin-x-socialsharing": "5.4.1"
+    "cordova-plugin-x-socialsharing": "5.4.1",
+    "cordova-plugin-geolocation": "4.0.1"
 }
 // BOTTOM OF METADATA
 });
