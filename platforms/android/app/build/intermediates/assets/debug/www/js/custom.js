@@ -37,8 +37,6 @@ $(document).ready(function(){
 
 
 });
-
-
 function insertView(blogId) {
     var token = localStorage.getItem("token");
     var status = 1;

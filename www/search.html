@@ -15,7 +15,7 @@
         }
     </style>
 </head>
-<body style="background: #fff; margin:0;">
+<body style="background: #fff; margin:0;" hidden>
 <div id="include"></div>
 <div id="main">
     <div class="z-depth-1">
@@ -114,6 +114,7 @@
         'yellow darken-4', 'amber darken-4', 'orange darken-4', 'deep-orange darken-4', 'brown darken-4', 'grey darken-4', 'blue-grey darken-4']
 
     $(document).ready(function () {
+        $('body').fadeIn(1100);;
 
         $.ajax({
             dataType: "json",
