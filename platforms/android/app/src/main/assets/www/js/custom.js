@@ -37,3 +37,32 @@ $(document).ready(function(){
 
 
 });
+
+
+function insertView(blogId) {
+    var token = localStorage.getItem("token");
+    var status = 1;
+    if(!token) {
+        token = localStorage.getItem("withoutLoginTokem");
+        status = 0;
+    }
+
+    $.ajax({
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        url: "http://192.168.0.101:5000/blogVisit",
+        data: JSON.stringify({token: token, status: status, blogId: blogId}),
+        type: "POST",
+    });
+
+}
+
+
+
+
+
+
+
+
+
+

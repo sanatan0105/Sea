@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-  <head>
+<head>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="css/custom.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/custom.css" media="screen,projection"/>
 
 
     <!--Let browser know website is optimized for mobile-->
@@ -14,414 +14,384 @@
 
 
     </style>
-  </head>
+</head>
 
-  <body style="background: #fff; margin:0;">
+<body style="background: #fff; margin:0;">
 
-      <div id="include"></div>
-      <div id="main">
-          <div class="z-depth-1">
-              <div class="container" >
-                  <div class="row" >
-                      <div class="col s3">
-                          <img src="img/defaultprofile.png" alt="" class="circle responsive-img center" style="">
-                      </div>
-                      <div class="col s9">
-                          <div class="row" style="margin-top: 4%;">
-                              <center>
-                                  <div class="col s4">
-                                      <strong><span style="font-size: 16px; text-align: center">200</span></strong><br/>
-                                      <span class="grey-text darken-3 ">Posts</span>
-                                  </div>
-                                  <div class="col s4">
-                                      <strong><span style="font-size: 16px; text-align: center">200</span></strong>
-                                      <span class="grey-text darken-3 ">Followers</span>
-                                  </div>
-                                  <div class="col s4">
-                                      <strong><span style="font-size: 16px; text-align: center ">200</span></strong>
-                                      <span class="grey-text darken-3">Following</span>
-                                  </div>
+<div id="include"></div>
+<div id="main">
+    <div class="z-depth-1">
+        <div class="container">
+            <div class="row">
+                <div class="col s3">
+                    <img src="img/defaultprofile.png" alt="" class="circle responsive-img center" style="">
+                </div>
+                <div class="col s9">
+                    <div class="row" style="margin-top: 4%;">
+                        <center>
+                            <div class="col s4">
+                                <strong><span id="blog_count" style="font-size: 16px; text-align: center"></span></strong><br/>
+                                <span class="grey-text darken-3 ">Posts</span>
+                            </div>
+                            <div class="col s4">
+                                <strong><span id="follower_count" style="font-size: 16px; text-align: center"></span></strong>
+                                <span class="grey-text darken-3 ">Followers</span>
+                            </div>
+                            <div class="col s4">
+                                <strong><span id="following_count" style="font-size: 16px; text-align: center "></span></strong>
+                                <span class="grey-text darken-3">Following</span>
+                            </div>
 
-                                  <button class="btn waves-effect waves-light indigo btn-small login_button" type="submit" name="action"><small>Edit profile
-                                      <i class="material-icons right">send</i></small>
-                                  </button>
-                              </center>
-                          </div>
-                      </div>
-                  </div>
-                  <!--<div class="row">-->
-                      <!--<div class="col s8"><div style="font-weight: 600; margin-top: -40px;">Sanatan Bhardwaj</div></div>-->
-                      <!--<div class="col s4">Joined </div>-->
-                  <!--</div>-->
+                            <button class="btn waves-effect waves-light indigo btn-small login_button" type="submit"
+                                    name="action">
+                                <small>Edit profile
+                                    <i class="material-icons right">send</i></small>
+                            </button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="row">-->
+            <!--<div class="col s8"><div style="font-weight: 600; margin-top: -40px;">Sanatan Bhardwaj</div></div>-->
+            <!--<div class="col s4">Joined </div>-->
+            <!--</div>-->
 
-                  <div style="font-weight: 600; margin-top: -40px;">Sanatan Bhardwaj &nbsp;&nbsp;<span style="color: #b0bec5; font-size: 12px; ">Joined - November 2018</span></div>
-                  <a href="#email"><span class="email " style="color: #b0bec5; font-size: 12px;">@jhon</span></a>
+            <div style="font-weight: 600; margin-top: -40px;" id="userName">Sanatan Bhardwaj &nbsp;&nbsp;
+                <span style="color: #b0bec5; font-size: 12px; " >
+                    Joined <span id="joinedTime">-November 2018</span>
+                </span>
+            </div>
+            <a href="#email"><span class="email " style="color: #b0bec5; font-size: 12px;">@jhon</span></a>
 
-              </div>
-              <div class="container-fluid">
-                  <div class="row">
-                      <div class="col s12">
-                          <ul class="tabs">
-                              <li class="tab col s3"><a class="active" href="#myshyari"><span style="font-size: 11px;" >My Shyari</span></a></li>
-                              <li class="tab col s3"><a href="#liked"><span style="font-size: 11px;" >Liked</span></a></li>
-                              <li class="tab col s3"><a href="#follower"><span style="font-size: 11px;" >Follower</span></a></li>
-                              <li class="tab col s3"><a href="#following"><span style="font-size: 10px;" >Following</span></a></li>
-                          </ul>
-                      </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a class="active" href="#myshyari"><span style="font-size: 11px;">Shyari</span></a></li>
+                        <li class="tab col s3"><a href="#liked"><span style="font-size: 11px;">Liked</span></a></li>
+                        <li class="tab col s3"><a href="#following"><span style="font-size: 10px;">Following</span></a></li>
+                        <li class="tab col s3"><a href="#follower"><span style="font-size: 11px;">Follower</span></a></li>
 
-                  </div>
+                    </ul>
+                </div>
 
-              </div>
+            </div>
 
-          </div>
+        </div>
 
-
-          <div id="notification"></div>
-          <div id="myshyari">
-              <div class="container-fluid">
-                  <div class="row">
-                      <div class="col s2">
-                          <center><img src="img/defaultava/1.png" height="41" width="41" class="blog-list-profile circle responsive-img"></center>
-                      </div>
-                      <div class="col s10">
-                          <p style="margin-left: 5px;"><a href="profile.html?id=someid" class="blog-list-name">Shayari Sea</a><span class="grey-text darken-3 blog-list-time"> - 4 days ago</span></p>
-                          <p style="margin-left: -13px; margin-top: -10px;" class="blog-content"><a href="single.html" style="color: #000;"> Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage.</a></p>
-                          <div class="row">
-                              <div class="col s4">
-                                  <div class="row">
-                                      <div class="col s3">
-                                        <span class="view-icon">
-                                            <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">visibility</i>
-                                        </span>
-                                      </div>
-                                      <div class="col s9">
-                                          <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                      </div>
-                                  </div>
+    </div>
 
 
-                              </div>
-                              <div class="col s4">
-                                  <div class="row">
-                                      <div class="col s3">
-                                        <span class="view-icon">
-                                            <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">thumb_up</i>
-                                        </span>
-                                      </div>
-                                      <div class="col s9">
-                                          <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col s2">
-                                  <span onclick="window.plugins.socialsharing.share('Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90\'s microdosing irony forage', 'The subject')"  class="share-button"><i class="material-icons" style="font-size: 18px; color: #53595e; margin-top: 3px;">share</i></span>
-                              </div>
-                              <div class="col s2">
-                                  <a href="https://api.whatsapp.com/send?text=Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage."><span class="share-button"><img src="img/whatsapp.png"  width="19" height="19" /> </span></a>
-                              </div>
-                          </div>
-                      </div>
+    <div id="notification"></div>
+    <div id="myshyari">
 
-                  </div>
-                  <hr style="margin-top:-50px;">
-                  <div class="row">
-                      <div class="col s2">
-                          <center><img src="img/defaultava/2.png" height="41" width="41" class="blog-list-profile circle responsive-img"></center>
-                      </div>
-                      <div class="col s10">
-                          <p style="margin-left: 5px;"><a href="profile.html?id=someid" class="blog-list-name">Shayari Sea</a><span class="grey-text darken-3 blog-list-time"> - 4 days ago</span></p>
-                          <p style="margin-left: -13px; margin-top: -10px;" class="blog-content"><a href="single.html" style="color: #000;">Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage.</a></p>
-                          <div class="row">
-                              <div class="col s4">
-                                  <div class="row">
-                                      <div class="col s3">
-                                        <span class="view-icon">
-                                            <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">visibility</i>
-                                        </span>
-                                      </div>
-                                      <div class="col s9">
-                                          <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                      </div>
-                                  </div>
-
-
-                              </div>
-                              <div class="col s4">
-                                  <div class="row">
-                                      <div class="col s3">
-                                        <span class="view-icon">
-                                            <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">thumb_up</i>
-                                        </span>
-                                      </div>
-                                      <div class="col s9">
-                                          <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col s2">
-                                  <span onclick="window.plugins.socialsharing.share('Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90\'s microdosing irony forage', 'The subject')" class="share-button"><i class="material-icons" style="font-size: 18px; color: #53595e; margin-top: 3px;">share</i></span>
-                              </div>
-                              <div class="col s2">
-                                  <a href="https://api.whatsapp.com/send?text=Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage."><span class="share-button"><img src="img/whatsapp.png"  width="19" height="19" /> </span></a>
-                              </div>
-                          </div>
-                      </div>
-
-                  </div>
-                  <hr style="margin-top:-50px;">
-                  <div class="row">
-                      <div class="col s2">
-                          <center><img src="img/defaultava/1.png" height="41" width="41" class="blog-list-profile circle responsive-img"></center>
-                      </div>
-                      <div class="col s10">
-                          <p style="margin-left: 5px;"><a href="profile.html?id=someid" class="blog-list-name">Shayari Sea</a><span class="grey-text darken-3 blog-list-time"> - 4 days ago</span></p>
-                          <p style="margin-left: -13px; margin-top: -10px;" class="blog-content"><a href="single.html" style="color: #000;">Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage.</a></p>
-                          <div class="row">
-                              <div class="col s4">
-                                  <div class="row">
-                                      <div class="col s3">
-                                    <span class="view-icon">
-                                        <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">visibility</i>
-                                    </span>
-                                      </div>
-                                      <div class="col s9">
-                                          <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                      </div>
-                                  </div>
-
-
-                              </div>
-                              <div class="col s4">
-                                  <div class="row">
-                                      <div class="col s3">
-                                    <span class="view-icon">
-                                        <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">thumb_up</i>
-                                    </span>
-                                      </div>
-                                      <div class="col s9">
-                                          <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col s2">
-                                  <span onclick="window.plugins.socialsharing.share('Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90\'s microdosing irony forage', 'The subject')" class="share-button"><i class="material-icons" style="font-size: 18px; color: #53595e; margin-top: 3px;">share</i></span>
-                              </div>
-                              <div class="col s2">
-                                  <a href="https://api.whatsapp.com/send?text=Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage."><span class="share-button"><img src="img/whatsapp.png"  width="19" height="19" /> </span></a>
-                              </div>
-                          </div>
-                      </div>
-
-                  </div>
-                  <hr style="margin-top:-50px;">
-                  <div class="row">
-                      <div class="col s2">
-                          <center><img src="img/defaultava/2.png" height="41" width="41" class="blog-list-profile circle responsive-img"></center>
-                      </div>
-                      <div class="col s10">
-                          <p style="margin-left: 5px;"><a  href="profile.html" class="blog-list-name">Shayari Sea</a><span class="grey-text darken-3 blog-list-time"> - 4 days ago</span></p>
-                          <p style="margin-left: -13px; margin-top: -10px;" class="blog-content"><a href="single.html" style="color: #000;">Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage.</a></p>
-                          <div class="row">
-                              <div class="col s4">
-                                  <div class="row">
-                                      <div class="col s3">
-                                    <span class="view-icon">
-                                        <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">visibility</i>
-                                    </span>
-                                      </div>
-                                      <div class="col s9">
-                                          <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                      </div>
-                                  </div>
-
-
-                              </div>
-                              <div class="col s4">
-                                  <div class="row">
-                                      <div class="col s3">
-                                    <span class="view-icon">
-                                        <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">thumb_up</i>
-                                    </span>
-                                      </div>
-                                      <div class="col s9">
-                                          <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col s2">
-                                  <span onclick="window.plugins.socialsharing.share('Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90\'s microdosing irony forage', 'The subject')" class="share-button"><i class="material-icons" style="font-size: 18px; color: #53595e; margin-top: 3px;">share</i></span>
-                              </div>
-                              <div class="col s2">
-                                  <a href="https://api.whatsapp.com/send?text=Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage."><span class="share-button"><img src="img/whatsapp.png"  width="19" height="19" /> </span></a>
-                              </div>
-                          </div>
-                      </div>
-
-                  </div>
-                  <hr style="margin-top:-50px;">
-              </div>
-          </div>
-         <div id="liked">
-             <div class="container-fluid">
-                 <div class="row">
-                     <div class="col s2">
-                         <center><img src="img/defaultava/2.png" height="41" width="41" class="blog-list-profile circle responsive-img"></center>
-                     </div>
-                     <div class="col s10">
-                         <p style="margin-left: 5px;"><a  href="profile.html" class="blog-list-name">Shayari Sea</a><span class="grey-text darken-3 blog-list-time"> - 4 days ago</span></p>
-                         <p style="margin-left: -13px; margin-top: -10px;" class="blog-content"><a href="single.html" style="color: #000;">Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage.</a></p>
-                         <div class="row">
-                             <div class="col s4">
-                                 <div class="row">
-                                     <div class="col s3">
-                                    <span class="view-icon">
-                                        <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">visibility</i>
-                                    </span>
-                                     </div>
-                                     <div class="col s9">
-                                         <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                     </div>
-                                 </div>
-
-
-                             </div>
-                             <div class="col s4">
-                                 <div class="row">
-                                     <div class="col s3">
-                                    <span class="view-icon">
-                                        <i class="material-icons " style="font-size: 18px; color: #828e99; margin-top: 3px; ">thumb_up</i>
-                                    </span>
-                                     </div>
-                                     <div class="col s9">
-                                         <span class="view-count" style="font-size: 12px; margin-top: -20px;">12222</span>
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="col s2">
-                                 <span onclick="window.plugins.socialsharing.share('Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90\'s microdosing irony forage', 'The subject')" class="share-button"><i class="material-icons" style="font-size: 18px; color: #53595e; margin-top: 3px;">share</i></span>
-                             </div>
-                             <div class="col s2">
-                                 <a href="https://api.whatsapp.com/send?text=Mustache vaporware freegan salvia gentrify vexillologist glossier locavore next level. Flexitarian vaporware mustache, banjo fingerstache unicorn direct trade cronut tumeric forage disrupt crucifix chicharrones. Aesthetic tote bag everyday carry synth. Cronut church-key messenger bag, tote bag cold-pressed blog bitters 90's microdosing irony forage."><span class="share-button"><img src="img/whatsapp.png"  width="19" height="19" /> </span></a>
-                             </div>
-                         </div>
-                     </div>
-
-                 </div>
-                 <hr style="margin-top:-50px;">
-             </div>
-         </div>
-         <div id="follower">
-             <ul class="collection">
-                 <li class="collection-item avatar">
-                     <img src="img/defaultava/1.png" alt="" class="circle">
-                     <span class="title">Title</span>
-                     <p>First Line <br>
-                         Second Line
-                     </p>
-                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                 </li>
-                 <li class="collection-item avatar">
-                     <i class="material-icons circle">folder</i>
-                     <span class="title">Title</span>
-                     <p>First Line <br>
-                         Second Line
-                     </p>
-                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                 </li>
-                 <li class="collection-item avatar">
-                     <i class="material-icons circle green">insert_chart</i>
-                     <span class="title">Title</span>
-                     <p>First Line <br>
-                         Second Line
-                     </p>
-                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                 </li>
-                 <li class="collection-item avatar">
-                     <i class="material-icons circle red">play_arrow</i>
-                     <span class="title">Title</span>
-                     <p>First Line <br>
-                         Second Line
-                     </p>
-                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                 </li>
-             </ul>
-         </div>
-         <div id="following">
-             <ul class="collection">
-                 <li class="collection-item avatar">
-                     <img src="img/defaultava/1.png" alt="" class="circle">
-                     <span class="title">Title</span>
-                     <p>First Line <br>
-                         Second Line
-                     </p>
-                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                 </li>
-                 <li class="collection-item avatar">
-                     <i class="material-icons circle">folder</i>
-                     <span class="title">Title</span>
-                     <p>First Line <br>
-                         Second Line
-                     </p>
-                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                 </li>
-                 <li class="collection-item avatar">
-                     <i class="material-icons circle green">insert_chart</i>
-                     <span class="title">Title</span>
-                     <p>First Line <br>
-                         Second Line
-                     </p>
-                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                 </li>
-                 <li class="collection-item avatar">
-                     <i class="material-icons circle red">play_arrow</i>
-                     <span class="title">Title</span>
-                     <p>First Line <br>
-                         Second Line
-                     </p>
-                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                 </li>
-             </ul>s
-         </div>
-      </div>
-      <div class="fixed-action-btn" style="margin-bottom: 30px;">
-          <a href="create.html" class="btn-floating btn-large indigo darken-4 z-depth-5" style="">
-              <i class="large material-icons" style="margin-top: -3px;">mode_edit</i>
-          </a>
-      </div>
-
-      <script type="text/javascript" src="cordova.js"></script>
-      <script type="text/javascript">
-          document.addEventListener("deviceready", function(){
-              // var deviceinfo = "cordova:"+device.cordova+"<br>Model:"+device.model+"<br>UUID:"+device.uuid+"<br>Platform:"+device.platform+"("+device.version+")";
-              // document.getElementById("deviceInfoText").innerHTML = deviceinfo;
-              function setTextZoomCallback(textZoom) {
-                  console.log('WebView text should be scaled ' + textZoom + '%');
-              }
-              MobileAccessibility.setTextZoom(110, setTextZoomCallback);
-          },false);
+    </div>
+    <div id="liked">
+    </div>
+    <div id="following">
 
 
 
+    </div>
+    <div id="follower">
 
-      </script>
-      <script src="js/pulltorefresh.js" type="text/javascript"></script>
-      <script>
-          PullToRefresh.init({
-              mainElement: '#main',
-              onRefresh: function(){
-                  // What do you want to do when the user does the pull-to-refresh gesture
-                  window.location.reload();
-              }
-          });
-      </script>
-      <script src="js/jquery.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-      <script>
+    </div>
+
+</div>
+<div class="fixed-action-btn" style="margin-bottom: 30px;">
+    <a href="create.html" class="btn-floating btn-large indigo darken-4 z-depth-5" style="">
+        <i class="large material-icons" style="margin-top: -3px;">mode_edit</i>
+    </a>
+</div>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript">
+    document.addEventListener("deviceready", function () {
+        // var deviceinfo = "cordova:"+device.cordova+"<br>Model:"+device.model+"<br>UUID:"+device.uuid+"<br>Platform:"+device.platform+"("+device.version+")";
+        // document.getElementById("deviceInfoText").innerHTML = deviceinfo;
+        function setTextZoomCallback(textZoom) {
+            console.log('WebView text should be scaled ' + textZoom + '%');
+        }
+
+        MobileAccessibility.setTextZoom(110, setTextZoomCallback);
+    }, false);
 
 
+</script>
+<script src="js/pulltorefresh.js" type="text/javascript"></script>
+<script>
+    PullToRefresh.init({
+        mainElement: '#main',
+        onRefresh: function () {
+            // What do you want to do when the user does the pull-to-refresh gesture
+            window.location.reload();
+        }
+    });
+</script>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<script>
+    var user_id = window.location.href.split("=")[1];
+    // user-and-blog/:ID
+    $(document).ready(function () {
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "http://192.168.0.101:5000/profile/user-and-blog/" + user_id,
+            type: "GET",
+            success: function (doc) {
+                var data = doc.doc;
+                var name = data.name;
+                var create_at = data.created_at;
+                $('#userName').html(name);
+                $('#joinedTime').html(create_at);
+                //set the data for user in the header
+                blogs = data.blogs;
 
-      </script>
+                if(blogs.length==0) {
+                    $('#myshyari').html('Nothing found');
+                    $('#blog_count').html(0);
+                } else {
+                    $('#blog_count').html(blogs.length );
+                    let shyari_output = "";
+                    for (var i = 0; i < blogs.length; i++) {
+                        const blog = blogs[i]
+                        const blog_id = blog.id;
+                        // insertView(blog.id);
+                        const blog_content = blog.blog;
+                        const blog_owner = data.name;
+                        const owner_id = data.id;
+                        const time_create = blog.create_at;
+                        var visit_count = 0;
+                        if (blog.count != null) {
+                            visit_count = blog.count.count;
+                        }
+                        const like_count = blog.likes.length;
 
-      <script type="text/javascript" src="js/custom.js"></script>
-  </body>
+                        shyari_output += "<div class='row'> " +
+                            "                <div class='col s2'>" +
+                            "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
+                            "                                 class='blog-list-profile circle responsive-img'></center> " +
+                            "                </div> " +
+                            "                <div class='col s10'> " +
+                            "                    <p style='margin-left: 5px;'><a href='profile.html?id="+ owner_id +"' class='blog-list-name'>" + blog_owner + "</a><span " +
+                            "                            class='grey-text darken-3 blog-list-time'> - " + time_create + "</span></p> " +
+                            "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html?blogid="+ blog_id +"' " +
+                            "                                                                                              style='color: #000;'>" + blog_content + " " +
+                            "                        .</a></p>" +
+                            "                    <div class='row'>" +
+                            "                        <div class='col s4'>" +
+                            "                            <div class='row'>" +
+                            "                                <div class='col s3'>" +
+                            "                                    <span class='view-icon'>" +
+                            "                                        <i class='material-icons '" +
+                            "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>visibility</i>" +
+                            "                                    </span>" +
+                            "                                </div>" +
+                            "                                <div class='col s9'>" +
+                            "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + visit_count + "</span>" +
+                            "                                </div>" +
+                            "                            </div>" +
+                            "                        </div>" +
+                            "                        <div class='col s4'>" +
+                            "                            <div class='row'>" +
+                            "                                <div class='col s3'>" +
+                            "                                    <span class='view-icon'>" +
+                            "                                        <i class='material-icons '" +
+                            "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>thumb_up</i>" +
+                            "                                    </span>" +
+                            "                                </div>" +
+                            "                                <div class='col s9'>" +
+                            "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + like_count + "</span>" +
+                            "                                </div>" +
+                            "                            </div>" +
+                            "                        </div>" +
+                            "                        <div class='col s2'>" +
+                            "                            <span onclick='window.plugins.socialsharing.share(\""+ blog_content +"\", \"The subject\")'" +
+                            "                                  class='share-button'><i class='material-icons'" +
+                            "                                                          style='font-size: 18px; color: #53595e; margin-top: 3px;'>share</i></span>" +
+                            "                        </div>" +
+                            "                        <div class='col s2'>" +
+                            "                            <a href='https://api.whatsapp.com/send?text=" + blog_content + " .'><span class='share-button'><img" +
+                            "                                    src='img/whatsapp.png' width='19' height='19'/> </span></a>" +
+                            "                        </div>" +
+                            "                    </div>" +
+                            "                </div>" +
+                            "            </div>" +
+                            "            <hr style='margin-top:-50px;'>"
+
+                    }
+                    $('#myshyari').html(shyari_output);
+                }
+
+            },
+            error: function (msg) {
+                M.myshyari({html: msg.responseJSON.message});
+            }
+        });
+        $('#result').html('<div class="progress"><div class="indeterminate"></div></div>');
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "http://192.168.0.101:5000/profile/user-liked/" + user_id,
+            type: "GET",
+            success: function (doc) {
+                blogs = doc.doc;
+                if(blogs.length == 0) {
+                    $('#liked').html('Nothing found');
+                } else {
+                    let shyari_output = "";
+                    for (var i = 0; i < blogs.length; i++) {
+
+                        const blog =  blogs[i].blog;
+                        const blog_id = blog.id;
+                        const blog_content = blog.blog;
+                        const blog_owner = blog.user.name;
+                        const owner_id = blog.user.id;
+                        const time_create = blog.create_at;
+                        var visit_count = 0;
+                        if (blog.count != null) {
+                            visit_count = blog.count.count;
+                        }
+                        const like_count = blog.likes.length;
+
+                        shyari_output += "<div class='row'> " +
+                            "                <div class='col s2'>" +
+                            "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
+                            "                                 class='blog-list-profile circle responsive-img'></center> " +
+                            "                </div> " +
+                            "                <div class='col s10'> " +
+                            "                    <p style='margin-left: 5px;'><a href='profile.html?id="+owner_id+"' class='blog-list-name'>" + blog_owner + "</a><span " +
+                            "                            class='grey-text darken-3 blog-list-time'> - " + time_create + "</span></p> " +
+                            "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html?blogid="+ blog_id +"' " +
+                            "                                                                                              style='color: #000;'>" + blog_content + " " +
+                            "                        .</a></p>" +
+                            "                    <div class='row'>" +
+                            "                        <div class='col s4'>" +
+                            "                            <div class='row'>" +
+                            "                                <div class='col s3'>" +
+                            "                                    <span class='view-icon'>" +
+                            "                                        <i class='material-icons '" +
+                            "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>visibility</i>" +
+                            "                                    </span>" +
+                            "                                </div>" +
+                            "                                <div class='col s9'>" +
+                            "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + visit_count + "</span>" +
+                            "                                </div>" +
+                            "                            </div>" +
+                            "                        </div>" +
+                            "                        <div class='col s4'>" +
+                            "                            <div class='row'>" +
+                            "                                <div class='col s3'>" +
+                            "                                    <span class='view-icon'>" +
+                            "                                        <i class='material-icons '" +
+                            "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>thumb_up</i>" +
+                            "                                    </span>" +
+                            "                                </div>" +
+                            "                                <div class='col s9'>" +
+                            "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + like_count + "</span>" +
+                            "                                </div>" +
+                            "                            </div>" +
+                            "                        </div>" +
+                            "                        <div class='col s2'>" +
+                            "                            <span onclick='window.plugins.socialsharing.share(\""+ blog_content +"\", \"The subject\")'" +
+                            "                                  class='share-button'><i class='material-icons'" +
+                            "                                                          style='font-size: 18px; color: #53595e; margin-top: 3px;'>share</i></span>" +
+                            "                        </div>" +
+                            "                        <div class='col s2'>" +
+                            "                            <a href='https://api.whatsapp.com/send?text=" + blog_content + " .'><span class='share-button'><img" +
+                            "                                    src='img/whatsapp.png' width='19' height='19'/> </span></a>" +
+                            "                        </div>" +
+                            "                    </div>" +
+                            "                </div>" +
+                            "            </div>" +
+                            "            <hr style='margin-top:-50px;'>"
+
+                    }
+                    $('#liked').html(shyari_output);
+                }
+
+
+            },
+            error: function (msg) {
+                M.myshyari({html: msg.responseJSON.message});
+            }
+        });
+        $('#result').html('<div class="progress"><div class="indeterminate"></div></div>');
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "http://192.168.0.101:5000/profile/following/" + user_id,
+            type: "GET",
+            success: function (doc) {
+                list = doc.doc;
+                $('#following_count').html(list.length | 0);
+                if(list.length== 0 ) {
+                    $('#following').html('0 Followers');
+                } else {
+                    var following_list = " <ul class='collection'>";
+                    for(var i=0; i< list.length; i++){
+                        const user = list[i].user;
+                        const name = user.name;
+                        const id = user.id;
+                        following_list += "<li class='collection-item avatar'>" +
+                            "                <img src='img/defaultava/1.png' alt='' class='circle'>" +
+                            "                <a href='profile.html?id="+ id +"'><span class='title'>" + name + "</span></a>" +
+                            "                <p>First Line " +
+                            "                </p>" +
+                            "                <a href='profile.html?id="+ id +"' class='secondary-content'><i class='material-icons black-text'>arrow_forward</i></a>" +
+                            "            </li>";
+                    }
+                    following_list += " </ul>";
+
+                    $('#following').html(following_list);
+                }
+
+            },
+            error: function (msg) {
+                M.myshyari({html: msg.responseJSON.message});
+            }
+        });
+        $('#result').html('<div class="progress"><div class="indeterminate"></div></div>');
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "http://192.168.0.101:5000/profile/follower/" + user_id,
+            type: "GET",
+            success: function (doc) {
+                list = doc.doc;
+                $('#follower_count').html(list.length | 0);
+                if(list.length == 0) {
+                    $('#follower').html('0 Follower');
+                } else {
+                    var follower_list = " <ul class='collection'>";
+                    for (var i = 0; i < list.length; i++) {
+                        const user = list[i];
+                        const name = user.name;
+                        const id = user.id;
+                        follower_list += "<li class='collection-item avatar'>" +
+                            "                <img src='img/defaultava/1.png' alt='' class='circle'>" +
+                            "                <a href='profile.html?id=" + id + "'><span class='title'>" + name + "</span></a>" +
+                            "                <p>First Line " +
+                            "                </p>" +
+                            "                <a href='profile.html?id=" + id + "' class='secondary-content'><i class='material-icons black-text'>arrow_forward</i></a>" +
+                            "            </li>";
+                    }
+                    follower_list += " </ul>";
+
+                    $('#follower').html(follower_list);
+                }
+            },
+            error: function (msg) {
+                M.myshyari({html: msg.responseJSON.message});
+            }
+        });
+        $('#result').html('<div class="progress"><div class="indeterminate"></div></div>');
+
+
+    });
+</script>
+</body>
 </html>

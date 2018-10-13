@@ -197,6 +197,7 @@
                 var shyari_output = '';
                 blog=doc.doc;
                 const blog_id = blog.id;
+                insertView(blog.id);
                 const blog_content = blog.blog;
                 const blog_owner = blog.user.name;
                 const time_create = blog.create_at;

@@ -144,8 +144,12 @@
             success: function (doc) {
                 let shyari_output = "";
                 for (var i = 0; i < doc.doc.length; i++) {
+
+
+
                     const blog = doc.doc[i]
                     const blog_id = blog.id;
+                    insertView(blog.id);
                     const blog_content = blog.blog;
                     const blog_owner = blog.user.name;
                     const time_create = blog.create_at;
@@ -249,8 +253,10 @@
             success: function (doc) {
                 let shyari_output = "";
                 for (var i = 0; i < doc.doc.length; i++) {
+
                     const blog = doc.doc[i]
                     const blog_id = blog.id;
+                    insertView(blog.id);
                     const blog_content = blog.blog;
                     const blog_owner = blog.user.name;
                     const time_create = blog.create_at;

@@ -5,7 +5,9 @@
 <body>
 
 
-<div id="result"></div>
+<div id="result">
+
+</div>
 
 
 <script src="js/jquery.min.js"></script>
@@ -13,27 +15,26 @@
 <script type="text/javascript">
 
 
-
     function checkConnection() {
         var networkState = navigator.connection.type;
 
         var states = {};
-        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.UNKNOWN] = 'Unknown connection';
         states[Connection.ETHERNET] = 'Ethernet connection';
-        states[Connection.WIFI]     = 'WiFi connection';
-        states[Connection.CELL_2G]  = 'Cell 2G connection';
-        states[Connection.CELL_3G]  = 'Cell 3G connection';
-        states[Connection.CELL_4G]  = 'Cell 4G connection';
-        states[Connection.CELL]     = 'Cell generic connection';
-        states[Connection.NONE]     = 'No network connection';
+        states[Connection.WIFI] = 'WiFi connection';
+        states[Connection.CELL_2G] = 'Cell 2G connection';
+        states[Connection.CELL_3G] = 'Cell 3G connection';
+        states[Connection.CELL_4G] = 'Cell 4G connection';
+        states[Connection.CELL] = 'Cell generic connection';
+        states[Connection.NONE] = 'No network connection';
 
-        return ( states[networkState]);
+        return (states[networkState]);
     }
 
-    document.addEventListener("deviceready", function(){
+    document.addEventListener("deviceready", function () {
         const connectivity = checkConnection();
 
-        if(connectivity == 'No network connection') {
+        if (connectivity == 'No network connection') {
             window.location.href = 'no-internet.html';
         } else {
             $.ajax({
@@ -44,23 +45,62 @@
                 success: function (msg) {
                     const version = msg.doc.version;
                     const localAppVersio = 1;
-                    if(version==localAppVersio){
-                       var token = localStorage.getItem("token");
-                       if (token != null){
-                           window.location.href = 'search-logged-in.html';
-                       } else {
-                           window.location.href = 'search.html';
-                       }
+                    if (version == localAppVersio) {
+
+                        var token = localStorage.getItem("token");
+                        if (!token) { //ajax call to store visit with token and status = 0
+                            var withoutLoginTokem = localStorage.getItem("withoutLoginTokem");
+
+                            if (!withoutLoginTokem) {
+
+                                var d = new Date();
+                                var timeStamp = d.getTime();
+                                var postfix = Math.random().toFixed(2) * 100;
+                                var generated_token = timeStamp.toString() + postfix.toString();
+
+                                localStorage.setItem("withoutLoginTokem", generated_token);
+                                withoutLoginTokem = generated_token;
+                            }
+                            $.ajax({
+                                dataType: "json",
+                                contentType: "application/json; charset=utf-8",
+                                url: "http://192.168.0.101:5000/appVisit",
+                                data: JSON.stringify({token: withoutLoginTokem, status: 0}),
+                                type: "POST",
+                                success: function (msg) {
+                                    window.location.href = 'search.html';
+                                },
+                                error: function (msg) {
+                                    window.location.href = 'search.html';
+                                }
+                            });
+                        } else {
+                            //ajax call to store visit with token and status = 1
+                            $.ajax({
+                                dataType: "json",
+                                contentType: "application/json; charset=utf-8",
+                                url: "http://192.168.0.101:5000/appVisit",
+                                data: JSON.stringify({token: token, status: 1}),
+                                type: "POST",
+                                success: function (msg) {
+                                    window.location.href = 'search.html';
+                                },
+                                error: function (msg) {
+                                    window.location.href = 'search.html';
+                                }
+                            });
+                        }
                     } else {
                         window.location.href = 'app-update.html';
                     }
                 },
-                error: function(msg) {
-                    alert('124');
-                    alert(JSON.stringify(msg));
+                error: function (msg) {
+                    alert('Something went wrong');
+
                 }
             });
         }
+        $('#result').html('Loading....');
     });
 </script>
 </body>
