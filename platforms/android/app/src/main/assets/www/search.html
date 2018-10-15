@@ -13,6 +13,7 @@
         .card-panel {
             height: 90px;
         }
+
     </style>
 </head>
 <body style="background: #fff; margin:0;" hidden>
@@ -25,7 +26,8 @@
                     <div class="row" id="topbarsearch">
                         <div class="input-field col s6 s12 ">
                             <i class=" material-icons prefix">search</i>
-                            <input type="text" onkeyup="handleLiveSearch(this.value)" placeholder="search" id="autocomplete-input" class="autocomplete ">
+                            <input type="text" placeholder="search"
+                                   id="autocomplete-input" class="autocomplete ">
                         </div>
                     </div>
                 </form>
@@ -55,9 +57,25 @@
     <div id="shyari">
         <div class="container-fluid" id="shyari_result">
         </div>
+        <div class="container-fluid" id="shyari_result_shyari">
+        </div>
+        <center>
+            <button onclick="buttonLoadMoreShyari()" style="margin-top: 30px; margin-bottom: 120px;" id="loadMoreBlog"
+                    class="btn waves-effect waves-light z-depth-4 login_button">
+                <span style="margin-top:120px;">Load More</span>
+            </button>
+        </center>
+        <center>
+            <button onclick="buttonLoadMoreShyariSearch()" style="margin-top: 30px; margin-bottom: 120px;"
+                    id="loadMoreBlogSearch"
+                    class="btn waves-effect waves-light z-depth-4 login_button">
+                <span style="margin-top:120px;">Search More</span>
+            </button>
+        </center>
+
     </div>
     <div id="user">
-        <ul class="collection">
+        <ul class="collection" id="userResultLogin">
             <li class="collection-item avatar">
                 <a href="login.html">
                     <img src="img/defaultava/1.png" alt="" class="circle">
@@ -70,6 +88,28 @@
             </li>
 
         </ul>
+
+        <div id="userSearchResult">
+            <ul class="collection" id ="userLoad">
+            </ul>
+            <ul class="collection" id ="userSearch">
+            </ul>
+            <center>
+                <button onclick="getUsersDirect()" style="margin-top: 30px; margin-bottom: 120px;"
+                        id="getMoreUserDirect"
+                        class="btn waves-effect waves-light z-depth-4 login_button">
+                    <span style="margin-top:120px;">Show More</span>
+                </button>
+            </center>
+            <center>
+                <button onclick="getMoreUserButton()" style="margin-top: 30px; margin-bottom: 120px;"
+                        id="getMoreUserSearch"
+                        class="btn waves-effect waves-light z-depth-4 login_button">
+                    <span style="margin-top:120px;">Show More</span>
+                </button>
+            </center>
+        </div>
+
     </div>
 </div>
 
@@ -79,6 +119,11 @@
         <i class="large material-icons" style="margin-top: -3px;">mode_edit</i>
     </a>
 </div>
+
+<input id="blog_counter" hidden value="0">
+<input id="blog_counter_search" hidden value="0">
+<input id="user_counter" hidden value="0">
+<input id="user_counter_search" hidden value="0">
 
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript">
@@ -91,8 +136,6 @@
 
         MobileAccessibility.setTextZoom(110, setTextZoomCallback);
     }, false);
-
-
 </script>
 <script src="js/pulltorefresh.js" type="text/javascript"></script>
 <script>
@@ -108,13 +151,507 @@
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 <script>
+
+
+    function getMoreUserButton(){
+        var limit = 1;
+        var offset = $('#user_counter_search').val();
+        var q = $('#autocomplete-input').val();
+        if(q!=0){
+            getUserSearch(limit, offset, q);
+            $('#user_counter_search').val(function (i, offset) {
+                return ++offset;
+            });
+        }
+
+    }
+
+    function getMoreUserSearch(q) {
+        var limit = 1;
+        var offset = $('#user_counter_search').val();
+        getUserSearch(limit, offset, q);
+        $('#user_counter_search').val(function (i, offset) {
+            return ++offset;
+        });
+    }
+
+    function getUsersDirect() {
+        var limit = 1;
+        var offset = $('#user_counter').val();
+        getUser(limit, offset);
+        $('#user_counter').val(function (i, offset) {
+            return ++offset;
+        });
+    }
+
+    function getUserSearch(limit, offset, q) {
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "http://192.168.0.101:5000/search/user/" + offset + "/" + limit +"/"+q ,
+            type: "GET",
+            success: function (doc) {
+
+                if(doc.doc.length == 0) {
+                    $('#userLoad').append('<center>No more result</center>');
+                } else {
+                    var documents = doc.doc;
+                    var output = "";
+                    for(var i = 0; i< doc.doc.length; i++) {
+                        var user = documents[i];
+                        var user_id = user.id;
+                        var name = user.name;
+                        var time = user.created_at;
+
+                        output+= "<li class='collection-item avatar'>" +
+                            "                <a href='profile.html?id='"+ user_id +">" +
+                            "                   <img src='img/defaultava/1.png' alt='' class='circle'>" +
+                            "                    <span class='title'>"+ name +"</span>" +
+                            "                    <p>@"+ name  +" <br>" +
+                            "                    </p>" +
+                            "                    <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">grade</i></a" +
+                            "                </a>" +
+                            "            </li>"
+                    }
+                    $('#userSearch').append(output);
+                }
+
+
+            },
+            error: function (msg) {
+                $('#userSearch').append('Something went wrong');
+            }
+        });
+    }
+
+    function getUser(limit, offset) {
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "http://192.168.0.101:5000/search/user/" + offset + "/" + limit ,
+            type: "GET",
+            success: function (doc) {
+
+                if(doc.doc.length == 0) {
+                    $('#userLoad').append('<center>No more result</center>');
+                } else {
+                    var documents = doc.doc;
+                    var output = "";
+                    for(var i = 0; i< doc.doc.length; i++) {
+                        var user = documents[i];
+                        var user_id = user.id;
+
+                        var name = user.name;
+                        var time = user.created_at;
+
+                        output+= "<li class='collection-item avatar'>" +
+                            "                <a href='profile.html?id="+ user_id +"'>" +
+                            "                   <img src='img/defaultava/1.png' alt='' class='circle'>" +
+                            "                    <span class='title'>"+ name +"</span>" +
+                            "                    <p>@"+ name  +" <br>" +
+                            "                    </p>" +
+                            "                    <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">grade</i></a" +
+                            "                </a>" +
+                            "            </li>"
+                    }
+                    $('#userLoad').append(output);
+                }
+
+
+            },
+            error: function (msg) {
+                $('#userLoad').append('Something went wrong');
+            }
+        });
+    }
+
+
+
+    function buttonLoadMoreShyariSearch() {
+        // limit, offset, cat_id, q
+        var offset = $('#blog_counter_search').val();
+        var limit = 1;
+        var q = $('#autocomplete-input').val();
+        if (q.length != 0) {
+            handleLiveSearchShyari(limit, offset, q);
+        }
+        $('#blog_counter_search').val(function (i, offset) {
+            return ++offset;
+        });
+    }
+
+    function buttonLoadMoreShyariDirect(q) {
+        var offset = $('#blog_counter_search').val();
+        var limit = 1;
+        handleLiveSearchShyari(limit, offset, q);
+        $('#blog_counter_search').val(function (i, offset) {
+            return ++offset;
+        });
+    }
+
+    function buttonLoadMoreShyari() {
+        const limit = 5;
+        var offset = $('#blog_counter').val();
+
+        blogApiCall(limit, offset);
+
+        $('#blog_counter').val(function (i, offset) {
+            return ++offset;
+        });
+
+
+    }
+
+    function blogApiCallForSearch(limit, offset) {
+        $('#loadMoreBlog').html('Loading...');
+        var token = localStorage.getItem("token");
+        var status = 1;
+        if(!token) {
+            token = localStorage.getItem("withoutLoginTokem");
+            status = 0;
+        }
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "http://192.168.0.101:5000/search/shyari/" + limit + "/" + offset+"/"+token+"/"+status,
+            type: "GET",
+            success: function (doc) {
+                let shyari_output = "";
+                for (var i = 0; i < doc.doc.length; i++) {
+
+                    const blog = doc.doc[i]
+                    const blog_id = blog.id;
+                    // insertView(blog.id);
+                    const blog_content = blog.blog;
+                    const blog_owner = blog.user.name;
+                    const time_create = blog.create_at;
+                    var visit_count = 0;
+                    if (blog.count != null) {
+                        visit_count = blog.count.count;
+                    }
+                    const like_count = blog.likes.length;
+
+                    shyari_output += "<div class='row'> " +
+                        "                <div class='col s2'>" +
+                        "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
+                        "                                 class='blog-list-profile circle responsive-img'></center> " +
+                        "                </div> " +
+                        "                <div class='col s10'> " +
+                        "                    <p style='margin-left: 5px;'><a href='profile.html' class='blog-list-name'>" + blog_owner + "</a><span " +
+                        "                            class='grey-text darken-3 blog-list-time'> - " + time_create + "</span></p> " +
+                        "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html?blogid=" + blog_id + "' " +
+                        "                                                                                              style='color: #000;'>" + blog_content + " " +
+                        "                        .</a></p>" +
+                        "                    <div class='row'>" +
+                        "                        <div class='col s4'>" +
+                        "                            <div class='row'>" +
+                        "                                <div class='col s3'>" +
+                        "                                    <span class='view-icon'>" +
+                        "                                        <i class='material-icons '" +
+                        "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>visibility</i>" +
+                        "                                    </span>" +
+                        "                                </div>" +
+                        "                                <div class='col s9'>" +
+                        "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + visit_count + "</span>" +
+                        "                                </div>" +
+                        "                            </div>" +
+                        "                        </div>" +
+                        "                        <div class='col s4'>" +
+                        "                            <div class='row'>" +
+                        "                                <div class='col s3'>" +
+                        "                                    <span class='view-icon'>" +
+                        "                                        <i class='material-icons '" +
+                        "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>thumb_up</i>" +
+                        "                                    </span>" +
+                        "                                </div>" +
+                        "                                <div class='col s9'>" +
+                        "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + like_count + "</span>" +
+                        "                                </div>" +
+                        "                            </div>" +
+                        "                        </div>" +
+                        "                        <div class='col s2'>" +
+                        "                            <span onclick='window.plugins.socialsharing.share(\"" + blog_content + "\", \"The subject\")'" +
+                        "                                  class='share-button'><i class='material-icons'" +
+                        "                                                          style='font-size: 18px; color: #53595e; margin-top: 3px;'>share</i></span>" +
+                        "                        </div>" +
+                        "                        <div class='col s2'>" +
+                        "                            <a href='https://api.whatsapp.com/send?text=" + blog_content + " .'><span class='share-button'><img" +
+                        "                                    src='img/whatsapp.png' width='19' height='19'/> </span></a>" +
+                        "                        </div>" +
+                        "                    </div>" +
+                        "                </div>" +
+                        "            </div>" +
+                        "            <hr style='margin-top:-50px;'>"
+
+                }
+                $('#shyari_result').append(shyari_output);
+            },
+            error: function (msg) {
+                M.toast({html: msg.responseJSON.message});
+            }
+        });
+    }
+
+    function blogApiCall(limit, offset) {
+
+        var token = localStorage.getItem("token");
+        var status = 1;
+        if(!token) {
+            token = localStorage.getItem("withoutLoginTokem");
+            status = 0;
+        }
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "http://192.168.0.101:5000/search/shyari/" + limit + "/" + offset+"/"+token+"/"+status,
+            type: "GET",
+            success: function (doc) {
+                if(doc.doc.length == 0){
+                    $('#shyari_result').append('<center>Nothing found</center>');
+                } else {
+                    let shyari_output = "";
+                    for (var i = 0; i < doc.doc.length; i++) {
+                        const blog = doc.doc[i]
+                        const blog_id = blog.id;
+                        const blog_content = blog.blog;
+                        const blog_owner = blog.user.name;
+                        const blog_owner_id = blog.user.id;
+                        const time_create = blog.create_at;
+                        var visit_count = 0;
+                        if (blog.count != null) {
+                            visit_count = blog.count.count;
+                        }
+                        const like_count = blog.likes.length;
+                        shyari_output += "<div class='row'> " +
+                            "                <div class='col s2'>" +
+                            "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
+                            "                                 class='blog-list-profile circle responsive-img'></center> " +
+                            "                </div> " +
+                            "                <div class='col s10'> " +
+                            "                    <p style='margin-left: 5px;'><a href='profile.html?id=" + blog_owner_id + "' class='blog-list-name'>" + blog_owner + "</a><span " +
+                            "                            class='grey-text darken-3 blog-list-time'> - " + time_create + "</span></p> " +
+                            "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html?blogid=" + blog_id + "' " +
+                            "                                                                                              style='color: #000;'>" + blog_content + " " +
+                            "                        .</a></p>" +
+                            "                    <div class='row'>" +
+                            "                        <div class='col s4'>" +
+                            "                            <div class='row'>" +
+                            "                                <div class='col s3'>" +
+                            "                                    <span class='view-icon'>" +
+                            "                                        <i class='material-icons '" +
+                            "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>visibility</i>" +
+                            "                                    </span>" +
+                            "                                </div>" +
+                            "                                <div class='col s9'>" +
+                            "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + visit_count + "</span>" +
+                            "                                </div>" +
+                            "                            </div>" +
+                            "                        </div>" +
+                            "                        <div class='col s4'>" +
+                            "                            <div class='row'>" +
+                            "                                <div class='col s3'>" +
+                            "                                    <span class='view-icon'>" +
+                            "                                        <i class='material-icons '" +
+                            "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>thumb_up</i>" +
+                            "                                    </span>" +
+                            "                                </div>" +
+                            "                                <div class='col s9'>" +
+                            "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + like_count + "</span>" +
+                            "                                </div>" +
+                            "                            </div>" +
+                            "                        </div>" +
+                            "                        <div class='col s2'>" +
+                            "                            <span onclick='window.plugins.socialsharing.share(\"" + blog_content + "\", \"The subject\")'" +
+                            "                                  class='share-button'><i class='material-icons'" +
+                            "                                                          style='font-size: 18px; color: #53595e; margin-top: 3px;'>share</i></span>" +
+                            "                        </div>" +
+                            "                        <div class='col s2'>" +
+                            "                            <a href='https://api.whatsapp.com/send?text=" + blog_content + " .'><span class='share-button'><img" +
+                            "                                    src='img/whatsapp.png' width='19' height='19'/> </span></a>" +
+                            "                        </div>" +
+                            "                    </div>" +
+                            "                </div>" +
+                            "            </div>" +
+                            "            <hr style='margin-top:-50px;'>"
+
+                    }
+                    $('#shyari_result').append(shyari_output);
+                }
+
+            },
+            error: function (msg) {
+                M.toast({html: msg.responseJSON.message});
+            }
+        });
+    }
+
+    function handleLiveSearchShyari(limit, offset, q ) {
+        var token = localStorage.getItem("token");
+        var status = 1;
+        if(!token) {
+            token = localStorage.getItem("withoutLoginTokem");
+            status = 0;
+        }
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "http://192.168.0.101:5000/search/liveSearchShyari",
+            data: JSON.stringify({query: q, token: token, status: status, limit: limit, offset: offset}),
+            type: "POST",
+            success: function (doc) {
+                if (doc.doc.length!=0) {
+                    let shyari_output = "";
+                    for (var i = 0; i < doc.doc.length; i++) {
+                        const blog = doc.doc[i]
+                        const blog_id = blog.id;
+                        const blog_content = blog.blog;
+                        const blog_owner = blog.user.name;
+                        const time_create = blog.create_at;
+                        var visit_count = 0;
+                        if (blog.count != null) {
+                            visit_count = blog.count.count;
+                        }
+                        const like_count = blog.likes.length;
+                        shyari_output += "<div class='row'> " +
+                            "                <div class='col s2'>" +
+                            "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
+                            "                                 class='blog-list-profile circle responsive-img'></center> " +
+                            "                </div> " +
+                            "                <div class='col s10'> " +
+                            "                    <p style='margin-left: 5px;'><a href='profile.html' class='blog-list-name'>" + blog_owner + "</a><span " +
+                            "                            class='grey-text darken-3 blog-list-time'> - " + time_create + "</span></p> " +
+                            "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html?blogid=" + blog_id + "' " +
+                            "                                                                                              style='color: #000;'>" + blog_content + " " +
+                            "                        .</a></p>" +
+                            "                    <div class='row'>" +
+                            "                        <div class='col s4'>" +
+                            "                            <div class='row'>" +
+                            "                                <div class='col s3'>" +
+                            "                                    <span class='view-icon'>" +
+                            "                                        <i class='material-icons '" +
+                            "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>visibility</i>" +
+                            "                                    </span>" +
+                            "                                </div>" +
+                            "                                <div class='col s9'>" +
+                            "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + visit_count + "</span>" +
+                            "                                </div>" +
+                            "                            </div>" +
+                            "                        </div>" +
+                            "                        <div class='col s4'>" +
+                            "                            <div class='row'>" +
+                            "                                <div class='col s3'>" +
+                            "                                    <span class='view-icon'>" +
+                            "                                        <i class='material-icons '" +
+                            "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>thumb_up</i>" +
+                            "                                    </span>" +
+                            "                                </div>" +
+                            "                                <div class='col s9'>" +
+                            "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + like_count + "</span>" +
+                            "                                </div>" +
+                            "                            </div>" +
+                            "                        </div>" +
+                            "                        <div class='col s2'>" +
+                            "                            <span onclick='window.plugins.socialsharing.share(\"" + blog_content + "\", \"The subject\")'" +
+                            "                                  class='share-button'><i class='material-icons'" +
+                            "                                                          style='font-size: 18px; color: #53595e; margin-top: 3px;'>share</i></span>" +
+                            "                        </div>" +
+                            "                        <div class='col s2'>" +
+                            "                            <a href='https://api.whatsapp.com/send?text=" + blog_content + " .'><span class='share-button'><img" +
+                            "                                    src='img/whatsapp.png' width='19' height='19'/> </span></a>" +
+                            "                        </div>" +
+                            "                    </div>" +
+                            "                </div>" +
+                            "            </div>" +
+                            "            <hr style='margin-top:-50px;'>"
+
+                    }
+                    $('#shyari_result_shyari').append(shyari_output);
+                } else {
+                    $('#shyari_result_shyari').append('<center>Nothing Found</center>');
+                }
+            },
+            error: function (msg) {
+                M.toast({html: msg.responseJSON.message});
+            }
+        });
+
+    }
+    function handleLiveSearch(q) {
+
+
+        $.ajax({
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            url: "http://192.168.0.101:5000/search/liveSearchCategory",
+            data: JSON.stringify({query: q}),
+            type: "POST",
+            success: function (msg) {
+                console.log(msg.doc.length);
+                if (msg.doc.length != 0) {
+                    let output = "";
+                    for (var i = 0; i < msg.doc.length; i++) {
+                        const category = msg.doc[i].category;
+                        const id = msg.doc[i].id;
+                        var x = Math.floor((Math.random() * colorArr.length));
+                        output += "<div class='col s6'><a href='blog-from-category.html?catId=" + id + "'><div class='card-panel teal " + colorArr[x] + "'><span class='white-text'>" + category + "</span></div></a></div>"
+                    }
+                    $('#category_result').html(output);
+                } else {
+                    $('#category_result').html("Nothing found");
+                }
+            },
+            error: function (msg) {
+                M.toast({html: msg.responseJSON.message});
+            }
+        });
+
+        buttonLoadMoreShyariDirect(q);
+        getMoreUserSearch(q);
+    }
+
+
     const colorArr = ['red darken-4', 'pink darken-4', 'purple darken-4',
         'deep-purple darken-4', 'indigo darken-4', 'blue darken-4', 'light-blue darken-4',
         'cyan darken-4', 'teal darken-4', 'green darken-4', 'light-green darken-4', 'lime darken-4',
         'yellow darken-4', 'amber darken-4', 'orange darken-4', 'deep-orange darken-4', 'brown darken-4', 'grey darken-4', 'blue-grey darken-4']
 
     $(document).ready(function () {
-        $('body').fadeIn(1100);;
+        $('body').fadeIn(1000);
+
+        var token = localStorage.getItem("token");
+
+        if(token) {
+           $('#userResultLogin').show();
+           $('#userSearchResult').hide();
+
+        } else {
+            $('#userResultLogin').hide();
+            $('#userSearchResult').show();
+            getUsersDirect();
+        }
+
+
+        $('#loadMoreBlogSearch').hide();
+        $('#getMoreUserSearch').hide();
+
+        $('#autocomplete-input').on("keyup input", function(){
+            var q = $(this).val();
+
+            if(q.length!=0){
+                $('#loadMoreBlogSearch').show();
+                $('#getMoreUserSearch').show();
+                $('#getMoreUserDirect').hide();
+                $('#loadMoreBlog').hide();
+                $('#shyari_result').html('');
+                $('#userLoad').html('');
+
+
+                handleLiveSearch(q);
+
+
+            }
+        });
+
 
         $.ajax({
             dataType: "json",
@@ -127,7 +664,7 @@
                     const category = msg.doc[i].category;
                     const id = msg.doc[i].id;
                     var x = Math.floor((Math.random() * colorArr.length));
-                    output += "<div class='col s6'><a href='blog-from-category.html?catId="+id+"'><div class='card-panel teal " + colorArr[x] + "'><span class='white-text'>" + category + "</span></div></a></div>"
+                    output += "<div class='col s6'><a href='blog-from-category.html?catId=" + id + "'><div class='card-panel teal " + colorArr[x] + "'><span class='white-text'>" + category + "</span></div></a></div>"
                 }
                 $('#category_result').html(output);
             },
@@ -135,199 +672,16 @@
                 M.toast({html: msg.responseJSON.message});
             }
         });
-        $('#category_result').html('<div class="progress"><div class="indeterminate"></div></div>');
 
-        $.ajax({
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            url: "http://192.168.0.101:5000/search/shyari",
-            type: "GET",
-            success: function (doc) {
-                let shyari_output = "";
-                for (var i = 0; i < doc.doc.length; i++) {
+        buttonLoadMoreShyari();
 
 
 
-                    const blog = doc.doc[i]
-                    const blog_id = blog.id;
-                    insertView(blog.id);
-                    const blog_content = blog.blog;
-                    const blog_owner = blog.user.name;
-                    const time_create = blog.create_at;
-                    var visit_count = 0;
-                    if (blog.count != null) {
-                        visit_count = blog.count.count;
-                    }
-                    const like_count = blog.likes.length;
 
-                    shyari_output += "<div class='row'> " +
-                        "                <div class='col s2'>" +
-                        "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
-                        "                                 class='blog-list-profile circle responsive-img'></center> " +
-                        "                </div> " +
-                        "                <div class='col s10'> " +
-                        "                    <p style='margin-left: 5px;'><a href='profile.html' class='blog-list-name'>" + blog_owner + "</a><span " +
-                        "                            class='grey-text darken-3 blog-list-time'> - " + time_create + "</span></p> " +
-                        "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html?blogid="+ blog_id +"' " +
-                        "                                                                                              style='color: #000;'>" + blog_content + " " +
-                        "                        .</a></p>" +
-                        "                    <div class='row'>" +
-                        "                        <div class='col s4'>" +
-                        "                            <div class='row'>" +
-                        "                                <div class='col s3'>" +
-                        "                                    <span class='view-icon'>" +
-                        "                                        <i class='material-icons '" +
-                        "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>visibility</i>" +
-                        "                                    </span>" +
-                        "                                </div>" +
-                        "                                <div class='col s9'>" +
-                        "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + visit_count + "</span>" +
-                        "                                </div>" +
-                        "                            </div>" +
-                        "                        </div>" +
-                        "                        <div class='col s4'>" +
-                        "                            <div class='row'>" +
-                        "                                <div class='col s3'>" +
-                        "                                    <span class='view-icon'>" +
-                        "                                        <i class='material-icons '" +
-                        "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>thumb_up</i>" +
-                        "                                    </span>" +
-                        "                                </div>" +
-                        "                                <div class='col s9'>" +
-                        "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + like_count + "</span>" +
-                        "                                </div>" +
-                        "                            </div>" +
-                        "                        </div>" +
-                        "                        <div class='col s2'>" +
-                        "                            <span onclick='window.plugins.socialsharing.share(\""+ blog_content +"\", \"The subject\")'" +
-                        "                                  class='share-button'><i class='material-icons'" +
-                        "                                                          style='font-size: 18px; color: #53595e; margin-top: 3px;'>share</i></span>" +
-                        "                        </div>" +
-                        "                        <div class='col s2'>" +
-                        "                            <a href='https://api.whatsapp.com/send?text=" + blog_content + " .'><span class='share-button'><img" +
-                        "                                    src='img/whatsapp.png' width='19' height='19'/> </span></a>" +
-                        "                        </div>" +
-                        "                    </div>" +
-                        "                </div>" +
-                        "            </div>" +
-                        "            <hr style='margin-top:-50px;'>"
-
-                }
-                $('#shyari_result').html(shyari_output);
-            },
-            error: function (msg) {
-                M.toast({html: msg.responseJSON.message});
-            }
-        });
-        $('#shyari_result').html('<div class="progress"><div class="indeterminate"></div></div>');
 
     })
 
-    function handleLiveSearch(q){
-        $.ajax({
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            url: "http://192.168.0.101:5000/search/liveSearchCategory",
-            data: JSON.stringify({ query: q}),
-            type: "POST",
-            success: function (msg) {
-                let output = "";
-                for (var i = 0; i < msg.doc.length; i++) {
-                    const category = msg.doc[i].category;
-                    const id = msg.doc[i].id;
-                    var x = Math.floor((Math.random() * colorArr.length));
-                    output += "<div class='col s6'><a href='blog-from-category.html?catId="+id+"'><div class='card-panel teal " + colorArr[x] + "'><span class='white-text'>" + category + "</span></div></a></div>"
-                }
-                $('#category_result').html(output);
-            },
-            error: function (msg) {
-                M.toast({html: msg.responseJSON.message});
-            }
-        });
-        $('#category_result').html('<div class="progress"><div class="indeterminate"></div></div>');
-        $.ajax({
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            url: "http://192.168.0.101:5000/search/liveSearchShyari",
-            data: JSON.stringify({ query: q}),
-            type: "POST",
-            success: function (doc) {
-                let shyari_output = "";
-                for (var i = 0; i < doc.doc.length; i++) {
 
-                    const blog = doc.doc[i]
-                    const blog_id = blog.id;
-                    insertView(blog.id);
-                    const blog_content = blog.blog;
-                    const blog_owner = blog.user.name;
-                    const time_create = blog.create_at;
-                    var visit_count = 0;
-                    if (blog.count != null) {
-                        visit_count = blog.count.count;
-                    }
-                    const like_count = blog.likes.length;
-
-                    shyari_output += "<div class='row'> " +
-                        "                <div class='col s2'>" +
-                        "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
-                        "                                 class='blog-list-profile circle responsive-img'></center> " +
-                        "                </div> " +
-                        "                <div class='col s10'> " +
-                        "                    <p style='margin-left: 5px;'><a href='profile.html' class='blog-list-name'>" + blog_owner + "</a><span " +
-                        "                            class='grey-text darken-3 blog-list-time'> - " + time_create + "</span></p> " +
-                        "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html?blogid="+ blog_id +"' " +
-                        "                                                                                              style='color: #000;'>" + blog_content + " " +
-                        "                        .</a></p>" +
-                        "                    <div class='row'>" +
-                        "                        <div class='col s4'>" +
-                        "                            <div class='row'>" +
-                        "                                <div class='col s3'>" +
-                        "                                    <span class='view-icon'>" +
-                        "                                        <i class='material-icons '" +
-                        "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>visibility</i>" +
-                        "                                    </span>" +
-                        "                                </div>" +
-                        "                                <div class='col s9'>" +
-                        "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + visit_count + "</span>" +
-                        "                                </div>" +
-                        "                            </div>" +
-                        "                        </div>" +
-                        "                        <div class='col s4'>" +
-                        "                            <div class='row'>" +
-                        "                                <div class='col s3'>" +
-                        "                                    <span class='view-icon'>" +
-                        "                                        <i class='material-icons '" +
-                        "                                           style='font-size: 18px; color: #828e99; margin-top: 3px; '>thumb_up</i>" +
-                        "                                    </span>" +
-                        "                                </div>" +
-                        "                                <div class='col s9'>" +
-                        "                                    <span class='view-count' style='font-size: 12px; margin-top: -20px;'>" + like_count + "</span>" +
-                        "                                </div>" +
-                        "                            </div>" +
-                        "                        </div>" +
-                        "                        <div class='col s2'>" +
-                        "                            <span onclick='window.plugins.socialsharing.share(\""+ blog_content +"\", \"The subject\")'" +
-                        "                                  class='share-button'><i class='material-icons'" +
-                        "                                                          style='font-size: 18px; color: #53595e; margin-top: 3px;'>share</i></span>" +
-                        "                        </div>" +
-                        "                        <div class='col s2'>" +
-                        "                            <a href='https://api.whatsapp.com/send?text=" + blog_content + " .'><span class='share-button'><img" +
-                        "                                    src='img/whatsapp.png' width='19' height='19'/> </span></a>" +
-                        "                        </div>" +
-                        "                    </div>" +
-                        "                </div>" +
-                        "            </div>" +
-                        "            <hr style='margin-top:-50px;'>"
-
-                }
-                $('#shyari_result').html(shyari_output);
-            },
-            error: function (msg) {
-                M.toast({html: msg.responseJSON.message});
-            }
-        });
-        $('#shyari_result').html('<div class="progress"><div class="indeterminate"></div></div>');
-    }
 
 </script>
 

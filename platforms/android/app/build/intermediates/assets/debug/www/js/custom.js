@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     var token = localStorage.getItem("token");
     if(!token){
+
         $("#include").load('include/header-without-login.html', function(){
             $('.sidenav').sidenav();
             $('.dropdown-trigger').dropdown({constrainWidth: false });
@@ -9,6 +10,7 @@ $(document).ready(function(){
             $('.tabs').tabs();
         });
     } else {
+
         $("#include").load('include/header.html', function(){
             $('.sidenav').sidenav();
             $('.dropdown-trigger').dropdown({constrainWidth: false });
