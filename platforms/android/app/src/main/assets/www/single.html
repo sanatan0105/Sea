@@ -200,21 +200,24 @@
                 insertView(blog.id);
                 const blog_content = blog.blog;
                 const blog_owner = blog.user.name;
+                const blog_owner_username = blog.user.username;
+                const blog_owner_id = blog.user.id;
                 const time_create = blog.create_at;
                 var visit_count = 0;
                 if (blog.count != null) {
                     visit_count = blog.count.count;
                 }
                 const like_count = blog.likes.length;
+                let user_profile = random_profile();
 
                 shyari_output += "<div class='row'>" +
                     "            <div class='col s3'>" +
-                    "                <center><img src='img/defaultava/1.png' height='48' width='48'" +
+                    "                <center><img src='"+ user_profile +"' height='48' width='48'" +
                     "                             class='blog-list-profile circle responsive-img' style='margin-top: -3px;'></center>" +
                     "            </div>" +
                     "            <div class='s9' style='line-height: 0.7; '>" +
-                    "                <p><a href='profile.html?id=someid' style='margin-left: -3%;font-size: 15px;'>"+ blog_owner +"</a></p>" +
-                    "                <span style='margin-left: -3%; font-size: 13px; margin-top: -10px;'>@shyarisea</span>" +
+                    "                <p><a href='profile.html?id='"+ blog_owner_id +" style='margin-left: -3%;font-size: 15px;'>"+ blog_owner +"</a></p>" +
+                    "                <span style='margin-left: -3%; font-size: 13px; margin-top: -10px;'>@"+ blog_owner_username +"</span>" +
                     "            </div>" +
                     "        </div>" +
                     "        <div class='row'>" +

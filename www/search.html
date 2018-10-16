@@ -86,7 +86,6 @@
                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                 </a>
             </li>
-
         </ul>
 
         <div id="userSearchResult">
@@ -154,11 +153,11 @@
 
 
     function getMoreUserButton(){
-        var limit = 1;
+        var limit = 30;
         var offset = $('#user_counter_search').val();
         var q = $('#autocomplete-input').val();
         if(q!=0){
-            getUserSearch(limit, offset, q);
+            getUserSearch(limit, offset, q, 'button');
             $('#user_counter_search').val(function (i, offset) {
                 return ++offset;
             });
@@ -167,16 +166,16 @@
     }
 
     function getMoreUserSearch(q) {
-        var limit = 1;
+        var limit = 30;
         var offset = $('#user_counter_search').val();
-        getUserSearch(limit, offset, q);
+        getUserSearch(limit, offset, q, 'search');
         $('#user_counter_search').val(function (i, offset) {
             return ++offset;
         });
     }
 
     function getUsersDirect() {
-        var limit = 1;
+        var limit = 30;
         var offset = $('#user_counter').val();
         getUser(limit, offset);
         $('#user_counter').val(function (i, offset) {
@@ -184,7 +183,7 @@
         });
     }
 
-    function getUserSearch(limit, offset, q) {
+    function getUserSearch(limit, offset, q, identifier) {
         $.ajax({
             dataType: "json",
             contentType: "application/json; charset=utf-8",
@@ -193,7 +192,12 @@
             success: function (doc) {
 
                 if(doc.doc.length == 0) {
-                    $('#userLoad').append('<center>No more result</center>');
+                    if(identifier == 'search'){
+                        $('#userLoad').html('<center>No more result</center>');
+                    } else {
+                        $('#userLoad').append('<center>No more result</center>');
+                    }
+
                 } else {
                     var documents = doc.doc;
                     var output = "";
@@ -201,22 +205,25 @@
                         var user = documents[i];
                         var user_id = user.id;
                         var name = user.name;
+                        var username = user.username;
                         var time = user.created_at;
-
+                        var user_profile = random_profile();
                         output+= "<li class='collection-item avatar'>" +
-                            "                <a href='profile.html?id='"+ user_id +">" +
-                            "                   <img src='img/defaultava/1.png' alt='' class='circle'>" +
+                            "                <a href='profile.html?id="+ user_id +"'>" +
+                            "                   <img src='"+ user_profile +"' alt='' class='circle'>" +
                             "                    <span class='title'>"+ name +"</span>" +
-                            "                    <p>@"+ name  +" <br>" +
+                            "                    <p>@"+ username  +" <br>" +
                             "                    </p>" +
-                            "                    <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">grade</i></a" +
+                            "                    <a href='profile.html?id="+ user_id +"' class=\"secondary-content\"><i class=\"material-icons black-text\">arrow_forward</i></a" +
                             "                </a>" +
                             "            </li>"
                     }
-                    $('#userSearch').append(output);
+                    if(identifier == 'search'){
+                        $('#userSearch').html(output);
+                    } else {
+                        $('#userSearch').append(output);
+                    }
                 }
-
-
             },
             error: function (msg) {
                 $('#userSearch').append('Something went wrong');
@@ -240,17 +247,18 @@
                     for(var i = 0; i< doc.doc.length; i++) {
                         var user = documents[i];
                         var user_id = user.id;
-
+                        var username = user.username;
+                        var user_profile = random_profile();
                         var name = user.name;
                         var time = user.created_at;
 
                         output+= "<li class='collection-item avatar'>" +
                             "                <a href='profile.html?id="+ user_id +"'>" +
-                            "                   <img src='img/defaultava/1.png' alt='' class='circle'>" +
+                            "                   <img src='"+ user_profile +"' alt='' class='circle'>" +
                             "                    <span class='title'>"+ name +"</span>" +
-                            "                    <p>@"+ name  +" <br>" +
+                            "                    <p>@"+ username  +" <br>" +
                             "                    </p>" +
-                            "                    <a href=\"#!\" class=\"secondary-content\"><i class=\"material-icons\">grade</i></a" +
+                            "                    <a href='profile.html?id="+ user_id +"' class=\"secondary-content\"><i class=\"material-icons black-text\">arrow_forward</i></a" +
                             "                </a>" +
                             "            </li>"
                     }
@@ -260,7 +268,7 @@
 
             },
             error: function (msg) {
-                $('#userLoad').append('Something went wrong');
+                $('#userLoad').html('Something went wrong');
             }
         });
     }
@@ -270,7 +278,7 @@
     function buttonLoadMoreShyariSearch() {
         // limit, offset, cat_id, q
         var offset = $('#blog_counter_search').val();
-        var limit = 1;
+        var limit = 30;
         var q = $('#autocomplete-input').val();
         if (q.length != 0) {
             handleLiveSearchShyari(limit, offset, q);
@@ -282,7 +290,7 @@
 
     function buttonLoadMoreShyariDirect(q) {
         var offset = $('#blog_counter_search').val();
-        var limit = 1;
+        var limit = 30;
         handleLiveSearchShyari(limit, offset, q);
         $('#blog_counter_search').val(function (i, offset) {
             return ++offset;
@@ -290,7 +298,7 @@
     }
 
     function buttonLoadMoreShyari() {
-        const limit = 5;
+        const limit = 30;
         var offset = $('#blog_counter').val();
 
         blogApiCall(limit, offset);
@@ -325,15 +333,16 @@
                     const blog_content = blog.blog;
                     const blog_owner = blog.user.name;
                     const time_create = blog.create_at;
+
                     var visit_count = 0;
                     if (blog.count != null) {
                         visit_count = blog.count.count;
                     }
                     const like_count = blog.likes.length;
-
+                    var user_profile = random_profile();
                     shyari_output += "<div class='row'> " +
                         "                <div class='col s2'>" +
-                        "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
+                        "                    <center><img src='"+ user_profile +"' height='41' width='41' " +
                         "                                 class='blog-list-profile circle responsive-img'></center> " +
                         "                </div> " +
                         "                <div class='col s10'> " +
@@ -417,6 +426,7 @@
                         const blog_owner = blog.user.name;
                         const blog_owner_id = blog.user.id;
                         const time_create = blog.create_at;
+                        var user_profile = random_profile();
                         var visit_count = 0;
                         if (blog.count != null) {
                             visit_count = blog.count.count;
@@ -424,7 +434,7 @@
                         const like_count = blog.likes.length;
                         shyari_output += "<div class='row'> " +
                             "                <div class='col s2'>" +
-                            "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
+                            "                    <center><img src='"+ user_profile +"' height='41' width='41' " +
                             "                                 class='blog-list-profile circle responsive-img'></center> " +
                             "                </div> " +
                             "                <div class='col s10'> " +
@@ -507,6 +517,7 @@
                         const blog_content = blog.blog;
                         const blog_owner = blog.user.name;
                         const time_create = blog.create_at;
+                        var user_profile = random_profile();
                         var visit_count = 0;
                         if (blog.count != null) {
                             visit_count = blog.count.count;
@@ -514,7 +525,7 @@
                         const like_count = blog.likes.length;
                         shyari_output += "<div class='row'> " +
                             "                <div class='col s2'>" +
-                            "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
+                            "                    <center><img src='"+ user_profile +"' height='41' width='41' " +
                             "                                 class='blog-list-profile circle responsive-img'></center> " +
                             "                </div> " +
                             "                <div class='col s10'> " +

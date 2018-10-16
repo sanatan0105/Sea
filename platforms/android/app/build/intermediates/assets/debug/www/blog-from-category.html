@@ -107,9 +107,6 @@
         if (q.length != 0) {
             blogApiCallSearch(limit, offset, cat_id, q);
         }
-
-
-
         $('#blog_counter_search').val(function (i, offset) {
             return ++offset;
         });
@@ -163,7 +160,9 @@
                         const blog_id = blog.id;
                         const blog_content = blog.blog;
                         const blog_owner = blog.user.name;
+                        const blog_owner_id = blog.user.id;
                         const time_create = blog.create_at;
+                        const user_profile = random_profile();
                         var visit_count = 0;
                         if (blog.count != null) {
                             visit_count = blog.count.count;
@@ -172,11 +171,11 @@
 
                         shyari_output += "<div class='row'> " +
                             "                <div class='col s2'>" +
-                            "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
+                            "                    <center><img src='"+user_profile+"' height='41' width='41' " +
                             "                                 class='blog-list-profile circle responsive-img'></center> " +
                             "                </div> " +
                             "                <div class='col s10'> " +
-                            "                    <p style='margin-left: 5px;'><a href='profile.html' class='blog-list-name'>" + blog_owner + "</a><span " +
+                            "                    <p style='margin-left: 5px;'><a href='profile.html?id="+blog_owner_id+"' class='blog-list-name'>" + blog_owner + "</a><span " +
                             "                            class='grey-text darken-3 blog-list-time'> - " + time_create + "</span></p> " +
                             "                    <p style='margin-left: -13px; margin-top: -10px; font-size: 13px ;' class='blog-content'><a href='single.html?blogid=" + blog_id + "' " +
                             "                                                                                              style='color: #000;'>" + blog_content + " " +

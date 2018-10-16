@@ -24,7 +24,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s3">
-                    <img src="img/defaultprofile.png" alt="" class="circle responsive-img center" style="">
+                    <img src="img/defaultprofile.png" alt="" id="profileImg" class="circle responsive-img center" style="">
                 </div>
                 <div class="col s9">
                     <div class="row" style="margin-top: 4%;">
@@ -42,11 +42,13 @@
                                 <span class="grey-text darken-3">Following</span>
                             </div>
 
-                            <button class="btn waves-effect waves-light indigo btn-small login_button" type="submit"
-                                    name="action">
-                                <small>Edit profile
-                                    <i class="material-icons right">send</i></small>
-                            </button>
+                            <div id="profile_button">
+
+                            </div>
+
+
+
+
                         </center>
                     </div>
                 </div>
@@ -56,12 +58,10 @@
             <!--<div class="col s4">Joined </div>-->
             <!--</div>-->
 
-            <div style="font-weight: 600; margin-top: -40px;" id="userName">Sanatan Bhardwaj &nbsp;&nbsp;
-                <span style="color: #b0bec5; font-size: 12px; " >
-                    Joined <span id="joinedTime">-November 2018</span>
-                </span>
+            <div style="font-weight: 600; margin-top: -40px;" id="name">Sanatan Bhardwaj &nbsp;&nbsp;
+
             </div>
-            <a href="#email"><span class="email " style="color: #b0bec5; font-size: 12px;">@jhon</span></a>
+            <a href="#email"><span class="email " id="username" style="color: #b0bec5; font-size: 12px;">@jhon</span></a>
 
         </div>
         <div class="container-fluid">
@@ -136,6 +136,11 @@
     var user_id = window.location.href.split("=")[1];
     // user-and-blog/:ID
     $(document).ready(function () {
+
+        var loc = random_profile();
+        $('#profileImg').attr("src",loc);
+
+
         $.ajax({
             dataType: "json",
             contentType: "application/json; charset=utf-8",
@@ -145,13 +150,48 @@
                 var data = doc.doc;
                 var name = data.name;
                 var create_at = data.created_at;
-                $('#userName').html(name);
+                var username = data.username;
+                $('#name').html(name);
+                $('#username').html("@"+username);
                 $('#joinedTime').html(create_at);
+
+
+                var token = localStorage.getItem("token");
+
+                if(!token) {
+                    $('#profile_button').html("<a href='login.html'><button class='btn waves-effect waves-light indigo btn-small login_button'><small>Login to follow<i class='material-icons right'>send</i></small></button></a>");
+
+                } else {
+                    var u_id = localStorage.getItem("id");
+                    if(user_id == u_id){
+                        $('#profile_button').html("<a href='create.html'><button class='btn waves-effect waves-light indigo btn-small login_button'><small>Write<i class='material-icons right'>send</i></small></button></a>");
+                    } else {
+
+                        var follow_unfollow = 'Follow';
+                        $.ajax({
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            url: "http://192.168.0.101:5000/profile/follow-unfollow/"+ u_id +"/"+user_id,
+                            type: "GET",
+                            success: function (doc) {
+                                if(doc.message=='Following'){
+                                    $('#profile_button').html("<a href='create.html'><button class='btn waves-effect waves-light indigo btn-small login_button'><small>Unfollow<i class='material-icons right'>send</i></small></button></a>");
+
+                                } else if(doc.message=='Follow') {
+                                    $('#profile_button').html("<a href='create.html'><button class='btn waves-effect waves-light indigo btn-small login_button'><small>Follow<i class='material-icons right'>send</i></small></button></a>");
+
+                                }
+                            },
+                        });
+
+                    }
+                }
+
                 //set the data for user in the header
                 blogs = data.blogs;
 
                 if(blogs.length==0) {
-                    $('#myshyari').html('Nothing found');
+                    $('#myshyari').html('<center>Nothing found</center>');
                     $('#blog_count').html(0);
                 } else {
                     $('#blog_count').html(blogs.length );
@@ -169,10 +209,10 @@
                             visit_count = blog.count.count;
                         }
                         const like_count = blog.likes.length;
-
+                        var user_profile = random_profile()
                         shyari_output += "<div class='row'> " +
                             "                <div class='col s2'>" +
-                            "                    <center><img src='img/defaultava/2.png' height='41' width='41' " +
+                            "                    <center><img src='"+ user_profile +"' height='41' width='41' " +
                             "                                 class='blog-list-profile circle responsive-img'></center> " +
                             "                </div> " +
                             "                <div class='col s10'> " +
@@ -240,7 +280,7 @@
             success: function (doc) {
                 blogs = doc.doc;
                 if(blogs.length == 0) {
-                    $('#liked').html('Nothing found');
+                    $('#liked').html('<center>Nothing found</center>');
                 } else {
                     let shyari_output = "";
                     for (var i = 0; i < blogs.length; i++) {
@@ -335,11 +375,13 @@
                     for(var i=0; i< list.length; i++){
                         const user = list[i].user;
                         const name = user.name;
+                        const username = user.username;
                         const id = user.id;
+                        var user_profile = random_profile();
                         following_list += "<li class='collection-item avatar'>" +
-                            "                <img src='img/defaultava/1.png' alt='' class='circle'>" +
+                            "                <img src='"+ user_profile +"' alt='' class='circle'>" +
                             "                <a href='profile.html?id="+ id +"'><span class='title'>" + name + "</span></a>" +
-                            "                <p>First Line " +
+                            "                <p>@"+ username +"" +
                             "                </p>" +
                             "                <a href='profile.html?id="+ id +"' class='secondary-content'><i class='material-icons black-text'>arrow_forward</i></a>" +
                             "            </li>";
@@ -370,13 +412,15 @@
                     for (var i = 0; i < list.length; i++) {
                         const user = list[i];
                         const name = user.name;
+                        const username = user.username;
+                        var user_profile = random_profile();
                         const id = user.id;
                         follower_list += "<li class='collection-item avatar'>" +
-                            "                <img src='img/defaultava/1.png' alt='' class='circle'>" +
-                            "                <a href='profile.html?id=" + id + "'><span class='title'>" + name + "</span></a>" +
-                            "                <p>First Line " +
+                            "                <img src='"+ user_profile +"' alt='' class='circle'>" +
+                            "                <a href='profile.html?id="+ id +"'><span class='title'>" + name + "</span></a>" +
+                            "                <p>@"+ username +"" +
                             "                </p>" +
-                            "                <a href='profile.html?id=" + id + "' class='secondary-content'><i class='material-icons black-text'>arrow_forward</i></a>" +
+                            "                <a href='profile.html?id="+ id +"' class='secondary-content'><i class='material-icons black-text'>arrow_forward</i></a>" +
                             "            </li>";
                     }
                     follower_list += " </ul>";
